@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Piutang;
+use App\Models\Anggota;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\DB;
 class PiutangController extends Controller
 {
     /**
@@ -36,7 +37,18 @@ class PiutangController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $piutang = piutang::create([
+            'usulan'=> $request->usulan,
+            'sisa'=> ,
+            'diberi'=>$request->pinj,
+            'waktu'=>$request->waktu,
+            'id_anggota'=> $request->ida,
+        ]);
+        if($piutang){
+            return redirect()->route('pokok.index')->with(['success' => 'Data Berhasil Disimpan!']);
+        }else {
+            return redirect()->route('pokok.index')->with(['error' => 'Data Gagal Disimpan!']);
+        }
     }
 
     /**
@@ -47,7 +59,10 @@ class PiutangController extends Controller
      */
     public function show(Piutang $piutang)
     {
-        //
+        $detail = DB::select('SELECT * FROM piutangs WHERE piutangs.id_anggota = '.$piutang);
+        $detail1 = DB::select('SELECT * FROM anggotas WHERE anggotas.nik= '.$piutang);
+
+        return view('detailPiutang', compact('detail','detail1'));
     }
 
     /**
