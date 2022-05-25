@@ -134,7 +134,7 @@
             </ul>
           </li>
           <li class="nav-item">
-            <a href="pages/gallery.html" class="nav-link">
+            <a href="piutang" class="nav-link">
               <i class="nav-icon far fa-copy"></i>
               <p>
                 Piutang

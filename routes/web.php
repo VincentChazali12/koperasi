@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PiutangMasterController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -23,6 +24,8 @@ Route::resource('detailHariRaya', DetailHariRayaController::class);
 Route::resource('modal', ModalController::class);
 
 Route::resource('piutang', PiutangController::class);
+Route::resource('piutangmaster', PiutangMasterController::class);
+Route::resource('simpananwajib',SimpananWajibController::class);
 Route::get('pokok.report', 'PokokController@report');
 Route::post('simpanQurban', 'DetailQurbanController@store1')->name('simpanQurban');
 Route::post('simpanHariRaya', 'DetailHariRayaController@store1')->name('simpanHariRaya');

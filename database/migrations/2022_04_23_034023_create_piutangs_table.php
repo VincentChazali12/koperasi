@@ -17,11 +17,13 @@ class CreatePiutangsTable extends Migration
             $table->id();
             $table->timestamps();
             $table->integer('usulan');
+            $table->integer('angsuran_pokok');
+            $table->integer('angsuran_jasa');
+            $table->integer('angsuran_total');
             $table->integer('sisa');
-            $table->integer('diberi');
             $table->integer('waktu');
             $table->string('ket',100);
-            $table->integer('id_anggota');
+            $table->string('id_piutang');
         });
     }
 
