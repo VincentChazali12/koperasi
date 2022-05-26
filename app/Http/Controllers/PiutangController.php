@@ -119,27 +119,7 @@ class PiutangController extends Controller
      */
     public function edit(Request $request)
     {
-        $pinjaman=$request->usulan;
-        $angsuran_jasa=round($pinjaman*(0.18/12),-3);
-        $angsuran_total=round($pinjaman*(0.18/12)/(1-(pow((1+(0.18/12)),(-60)))),-3);
-        $angsuran_pokok=round($angsuran_total-$angsuran_jasa,-2);
-        $sisa = round($pinjaman-$angsuran_pokok);
-        $id=$request->ida;
-        $piutang = piutang::create([
-            'usulan'=> $request->usulan,
-            'angsuran_pokok'=>$angsuran_pokok,
-            'angsuran_jasa'=>$angsuran_jasa,
-            'angsuran_total'=>$angsuran_total,
-            'sisa'=> $sisa,
-            'waktu'=>$request->waktu,
-            'ket'=>"Sudah Bayar",
-            'id_piutang'=> $request->ida,
-        ]); 
-        if($piutang){
-            return redirect()->route('piutang.index')->with(['success' => 'Data Berhasil Disimpan!']);
-        }else {
-            return redirect()->route('piutang.index')->with(['error' => 'Data Gagal Disimpan!']);
-        }
+        
     }
 
     /**
@@ -149,9 +129,37 @@ class PiutangController extends Controller
      * @param  \App\Models\Piutang  $piutang
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Piutang $piutang)
+    public function update(Request $request, $ids)
     {
-        //
+        $pinjaman=$request->usulan;
+        $angsuran_jasa=round($pinjaman*(0.18/12),-3);
+        $angsuran_total=round($pinjaman*(0.18/12)/(1-(pow((1+(0.18/12)),(-60)))),-3);
+        $angsuran_pokok=round($angsuran_total-$angsuran_jasa,-2);
+        $sisa = round($pinjaman-$angsuran_pokok);
+        $id=$request->ida;
+        $waktu=$request->waktu;
+        $waktubaru=$waktu-1;
+        $piutang = piutang::create([
+            'usulan'=> $request->usulan,
+            'angsuran_pokok'=>$angsuran_pokok,
+            'angsuran_jasa'=>$angsuran_jasa,
+            'angsuran_total'=>$angsuran_total,
+            'sisa'=> $sisa,
+            'waktu'=>$waktubaru,
+            'ket'=>"Sudah Bayar",
+            'id_piutang'=> $request->ida,
+        ]); 
+        $piutangmaster = piutangmaster::findOrFail($ids);
+        $piutangmaster->update([
+            'sisa'=>$sisa,
+            'waktu'=>$waktubaru,
+        ]);
+        if($piutangmaster){
+            return redirect()->route('piutang.index')->with(['success' => 'Data Berhasil Disimpan!']);
+        }else {
+            return redirect()->route('piutang.index')->with(['error' => 'Data Gagal Disimpan!']);
+        }
+
     }
 
     /**

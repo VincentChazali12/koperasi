@@ -116,7 +116,7 @@
                     @endphp
                       @foreach($piutangs as $data)
                       <tr>
-                  <form onsubmit="return confirm('Apakah Anda Yakin ?');" action="{{ route('simpananwajib.store') }}" role="form" method="POST">
+                  <form onsubmit="return confirm('Apakah Anda Yakin ?');" action="{{ route('piutang.update',$data->id) }}" role="form" method="POST">
                   @csrf
                       
                       <tr>
