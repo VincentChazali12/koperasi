@@ -118,7 +118,7 @@
                       <tr>
                   <form onsubmit="return confirm('Apakah Anda Yakin ?');" action="{{ route('piutang.update',$data->id) }}" role="form" method="POST">
                   @csrf
-                      
+                  @method('PUT')
                       <tr>
                           <td>{{$no++}}</td>
                           <td>{{$data->nama}}</td>
@@ -128,6 +128,7 @@
                           <td>{{$data->waktu}}</td>
                           <td>{{$data->status}}</td>
                           <input type="hidden" value="{{$data->id}}" id="ida" name="ida">
+                          <input type="hidden" value="{{$data->sisa}}" id="sisa" name="sisa">
                           <input type="hidden" value="{{$data->usulan}}" id="usulan" name="usulan">
                           <input type="hidden" value="{{$data->waktu}}" id="waktu" name="waktu">
                     <td><a href="{{ route('piutang.show', $data->id) }}">Detail</a>&nbsp;|&nbsp; <input type="submit" class="btn" value="Tambah"></td>
