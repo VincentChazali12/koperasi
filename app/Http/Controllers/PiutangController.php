@@ -132,9 +132,10 @@ class PiutangController extends Controller
     public function update(Request $request, $ids)
     {
         $pinjaman=$request->sisa;
-        $angsuran_jasa=round($pinjaman*(0.18/12),-3);
-        $angsuran_total=round($pinjaman*(0.18/12)/(1-(pow((1+(0.18/12)),(-60)))),-3);
-        $angsuran_pokok=round($angsuran_total-$angsuran_jasa,-2);
+        $usulan=$request->usulan;
+        $angsuran_jasa=round($pinjaman*(0.18/12),-2);
+        $angsuran_total=round($usulan*(0.18/12)/(1-(pow((1+(0.18/12)),(-60)))),-3);
+        $angsuran_pokok=round($angsuran_total-$angsuran_jasa);
         $sisa = round($pinjaman-$angsuran_pokok);
         $id=$request->ida;
         $waktu=$request->waktu;
