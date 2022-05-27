@@ -192,9 +192,12 @@
                   </thead>
                   <tbody>
                     @foreach($anggota as $data)
-    
+                    
                             
                       <tr>
+                      <form onsubmit="return confirm('Apakah Anda Yakin ?');" action="{{ route('anggota.create') }}" role="form" method="POST">
+                  @csrf
+                  @method('PUT')
                         <td>
                           {{$data->nik}}
                         </td>
@@ -219,19 +222,12 @@
                         <td>
                           {{$data->status}}
                         </td>
-                        <form onsubmit="return confirm('Apakah Anda Yakin ?');" action="{{ route('anggota.create') }}" role="form" method="POST">
-                          @csrf
-                          @method('PUT')
                           <input type="hidden" value="{{$data->nik}}" id="ida" name="ida">
-                        <td>
-                         
-                            
-                        <input type="submit" class="btn" value="Keluar">
-                           
-                        </td>
-                        </form>
-                      </tr> 
-                    @endforeach
+                          <td><input type="submit" class="btn" value="Tambah"></td>
+                    </form>
+                      </tr>
+                      
+                      @endforeach
                   </tbody>
                   
                 </table>

@@ -30,12 +30,7 @@ class AnggotaController extends Controller
     public function create(Request $request)
     {
         $id=$request->ida;
-        $pokok = DB::select("SELECT SUM(pokoks.spokok) as total FROM anggotas, pokoks WHERE anggotas.nik = pokoks.nik AND anggotas.nik = '$request->ida'");
-        $qurban = DB::select("SELECT SUM(detail_qurbans.simpanan) as total FROM qurbans, detail_qurbans, anggotas WHERE qurbans.id = detail_qurbans.id_qurban AND qurbans.nik=anggotas.nik AND anggotas.nik = '$request->ida'");
-        $hariraya = DB::select("SELECT SUM(detail_hari_rayas.simpanan) as total FROM hari_rayas, detail_hari_rayas, anggotas WHERE hari_rayas.id = detail_hari_rayas.id_hari_raya AND hari_rayas.nik=anggotas.nik AND anggotas.nik = '$request->ida'");
-        $ss = $qurban + $hariraya;
-        $sp= 25000;
-        $sw = $pokok;
+        
 
         // $anggota = Anggota::findOrFail($id);
         // $anggota->update([
@@ -64,6 +59,12 @@ class AnggotaController extends Controller
         $harirayas->update([
             'status'=>'Tidak Aktif',
         ]);
+        $pokok = DB::select("SELECT SUM(pokoks.spokok) as total FROM anggotas, pokoks WHERE anggotas.nik = pokoks.nik AND anggotas.nik = '$request->ida'");
+        $qurban = DB::select("SELECT SUM(detail_qurbans.simpanan) as total FROM qurbans, detail_qurbans, anggotas WHERE qurbans.id = detail_qurbans.id_qurban AND qurbans.nik=anggotas.nik AND anggotas.nik = '$request->ida'");
+        $hariraya = DB::select("SELECT SUM(detail_hari_rayas.simpanan) as total FROM hari_rayas, detail_hari_rayas, anggotas WHERE hari_rayas.id = detail_hari_rayas.id_hari_raya AND hari_rayas.nik=anggotas.nik AND anggotas.nik = '$request->ida'");
+        $ss = $qurban + $hariraya;
+        $sp= 25000;
+        $sw = $pokok;
         if ($anggota) {
             return redirect()->route('pokok.index')->with(['successs' => 'Data Berhasil Diubah!'])->with(['sp'=>$sp])->with(['sw'=>$sw])->with(['dari'=>$anggota->nama])->with(['ss'=>$ss]);
         } else {
