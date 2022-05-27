@@ -37,3 +37,9 @@ Route::get('suratHariRaya', 'HariRayaController@surat');
 Route::get('print', function () {
     return view('printForm');
 });
+Route::get('simulasi', function () {
+    return view('SImulasi');
+});
+Route::get('hasilsimulasi', function () {
+    return view('hasilsimulasi');
+});

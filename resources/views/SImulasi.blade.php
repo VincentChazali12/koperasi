@@ -12,7 +12,11 @@
   <link rel="stylesheet" href="../../dist/css/adminlte.min.css">
 @endsection
 @section('content')
-
+@if (session()->has('success'))
+        <div class="alert alert-primary">
+            {{ session()->get('success') }}
+        </div>
+@endif
   <!-- Main Sidebar Container -->
   
   <!-- Content Wrapper. Contains page content -->
@@ -62,11 +66,6 @@
                           <div class="form-group col-6">
                               <label for="ida">id | Nama</label>
                               <input type="text" class="form-control ida" id="ida" placeholder="Masukkan ida atau Nama" name="ida" list="daftarNama">
-                              <datalist id="daftarNama">
-                                @foreach($anggota as $data)
-                                  <option value="{{$data->nik}} | {{$data->nama}}"></option>
-                                @endforeach
-                              </datalist>
 
                             </div>
                           </div>
@@ -93,54 +92,7 @@
                 </div><!-- /.modal -->
                 <!-- Button trigger modal -->
                 <br><br>
-                @if (session()->has('success'))
-        <div class="alert alert-primary">
-            {{ session()->get('success') }}
-        </div>
-@endif
-                <table id="example1" class="table table-bordered table-striped">
-                  <thead>
-                  <tr>
-                    <th>No</th>
-                    <th>Nama</th>
-                    <th>TGl Usulan</th>
-                    <th>Total Pinjaman</th>
-                    <th>Sisa Hutang</th>
-                    <th>Waktu</th>
-                    <th>status</th>
-                    <th>Aksi</th>
-                  </tr>
-                  </thead>
-                  <tbody>
-                    @php
-                    $no = 0
-                    @endphp
-                      @foreach($piutangs as $data)
-                      <tr>
-                  <form onsubmit="return confirm('Apakah Anda Yakin ?');" action="{{ route('piutang.update',$data->id) }}" role="form" method="POST">
-                  @csrf
-                  @method('PUT')
-                      <tr>
-                          <td>{{$no++}}</td>
-                          <td>{{$data->nama}}</td>
-                          <td>{{$data->created_at}}</td>
-                          <td>{{$data->usulan}}</td>
-                          <td>{{$data->sisa}}</td>
-                          <td>{{$data->waktu}}</td>
-                          <td>{{$data->status}}</td>
-                          <input type="hidden" value="{{$data->id}}" id="ida" name="ida">
-                          <input type="hidden" value="{{$data->sisa}}" id="sisa" name="sisa">
-                          <input type="hidden" value="{{$data->usulan}}" id="usulan" name="usulan">
-                          <input type="hidden" value="{{$data->waktu}}" id="waktu" name="waktu">
-                    <td><a href="{{ route('piutang.show', $data->id) }}">Detail</a>&nbsp;|&nbsp; <input type="submit" class="btn" value="Tambah"></td>
-                    </form>
-                      </tr>
-                      
-                      @endforeach
-                      
-                  </tbody>
-                  
-                </table>
+                
                 
               </div>
               <!-- /.card-body -->

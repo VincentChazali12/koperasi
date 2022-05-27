@@ -140,6 +140,14 @@
                 Piutang
               </p>
             </a>
+          </li>
+          <li class="nav-item">
+            <a href="hasilsimulasi" class="nav-link">
+              <i class="nav-icon far fa-copy"></i>
+              <p>
+                Simulasi
+              </p>
+            </a>
           </li> 
         </ul>
       </nav>
