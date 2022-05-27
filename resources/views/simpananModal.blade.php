@@ -68,7 +68,6 @@
                                 <option value="{{$data->nik}} | {{$data->nama}}"></option>
                               @endforeach
                             </datalist>
-
                           </div>
                           <div class="form-group">
                             <button type="submit" class="btn btn-primary">Tambah</button>

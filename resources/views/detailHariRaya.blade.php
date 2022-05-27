@@ -44,7 +44,7 @@
                 @foreach($detail1 as $data)
                   <div class="row">
                     <div class="col-4">
-                      Simpanan Qurban Tahun {{$data->tahun}} 
+                      Simpanan Hari Raya Tahun {{$data->tahun}} 
                     </div>
                     <div class="col-4">
                       Oleh {{$data->nama}} ({{$data->nik}}) 
@@ -67,7 +67,7 @@
                           <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                         </div>
                         <div class="modal-body">
-                          <form action="{{route('simpanQurban')}}" role="form" method="POST">
+                          <form action="{{route('simpanHariRaya')}}" role="form" method="POST">
                             @csrf
                             <div class="row">
                               <div class="form-group col-6">

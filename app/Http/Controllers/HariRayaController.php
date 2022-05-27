@@ -59,7 +59,7 @@ class HariRayaController extends Controller
             'simpanan' => $request->nominal,
         ]);
         if($raya){
-            return redirect()->route('hariraya.index')->with(['success' => 'Data Berhasil Disimpan!']);
+            return redirect()->route('hariraya.index')->with(['success' => 'Data Berhasil Disimpan!'])->with(['ss' => $request->nominal])->with(['dari' => explode(' ', $request->ida)[2]]);
         }else {
             return redirect()->route('hariraya.index')->with(['error' => 'Data Gagal Disimpan!']);
         }

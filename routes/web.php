@@ -34,3 +34,9 @@ Route::get('suratHariRaya', 'HariRayaController@surat');
 Route::get('print', function () {
     return view('printForm');
 });
+Route::get('kasMasuk', function () {
+    return view('kasMasuk');
+});
+Route::get('kasKeluar', function () {
+    return view('kasKeluar');
+});

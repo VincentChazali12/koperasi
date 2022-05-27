@@ -145,10 +145,37 @@
                 </div><!-- /.modal -->
                 <br><br>
                 @if (session()->has('success'))
-        <div class="alert alert-primary">
-            {{ session()->get('success') }}
-        </div>
-@endif
+                  <div class="alert alert-primary">
+                     {{ session()->get('success') }}
+                     <form action="kasMasuk" role="form" method="GET" target="_blank">
+                        <input type="hidden" name="sp" value = {{ session()->get('sp')}}>
+                        <input type="hidden" name="sw" value = {{ session()->get('sw')}}>
+                        <input type="hidden" name="swk" value = {{ session()->get('swk')}}>
+                        <input type="hidden" name="sm" value = {{ session()->get('sm')}}>
+                        <input type="hidden" name="ss" value = {{ session()->get('ss')}}>
+                        <input type="hidden" name="dr" value = {{ session()->get('dr')}}>
+                        <input type="hidden" name="dari" value = {{ session()->get('dari')}}>
+                        <input type="hidden" name="ket" value = "Simpanan Anggota Baru ".{{ session()->get('dari')}}>
+                        <button type="submit" class="btn btn-default" data-dismiss="modal">Cetak Kas Masuk</button>
+                     </form>
+                  </div>
+                @endif
+                @if (session()->has('successs'))
+                  <div class="alert alert-primary">
+                     {{ session()->get('successs') }}
+                     <form action="kasKeluar" role="form" method="GET" target="_blank">
+                        <input type="hidden" name="sp" value = {{ session()->get('sp')}}>
+                        <input type="hidden" name="sw" value = {{ session()->get('sw')}}>
+                        <input type="hidden" name="swk" value = {{ session()->get('swk')}}>
+                        <input type="hidden" name="sm" value = {{ session()->get('sm')}}>
+                        <input type="hidden" name="ss" value = {{ session()->get('ss')}}>
+                        <input type="hidden" name="dr" value = {{ session()->get('dr')}}>
+                        <input type="hidden" name="dari" value = {{ session()->get('dari')}}>
+                        <input type="hidden" name="ket" value = "Dikeluarkan Simpanan Anggota ".{{ session()->get('dari')}}>
+                        <button type="submit" class="btn btn-default" data-dismiss="modal">Cetak Kas Keluar</button>
+                     </form>
+                  </div>
+                @endif
                 <table id="example1" class="table table-bordered table-striped">
                   <thead>
                   <tr>
@@ -165,35 +192,45 @@
                   </thead>
                   <tbody>
                     @foreach($anggota as $data)
-                    <tr>
-                      <td>
-                        {{$data->nik}}
-                      </td>
-                      <td>
-                        {{$data->nama}}
-                      </td>
-                      <td>
-                        {{$data->ttl}}
-                      </td>
-                      <td>
-                        {{$data->alamat}}
-                      </td>
-                      <td>
-                        {{$data->tempat_tugas}}
-                      </td>
-                      <td>
-                        {{$data->telp}}
-                      </td>
-                      <td>
-                        {{$data->norek}}
-                      </td>
-                      <td>
-                        {{$data->status}}
-                      </td>
-                      <td>
-                        <a href="">Keluar</a>
-                      </td>
-                    </tr>
+    
+                            
+                      <tr>
+                        <td>
+                          {{$data->nik}}
+                        </td>
+                        <td>
+                          {{$data->nama}}
+                        </td>
+                        <td>
+                          {{$data->ttl}}
+                        </td>
+                        <td>
+                          {{$data->alamat}}
+                        </td>
+                        <td>
+                          {{$data->tempat_tugas}}
+                        </td>
+                        <td>
+                          {{$data->telp}}
+                        </td>
+                        <td>
+                          {{$data->norek}}
+                        </td>
+                        <td>
+                          {{$data->status}}
+                        </td>
+                        <form onsubmit="return confirm('Apakah Anda Yakin ?');" action="{{ route('anggota.update',$data->nik)}}" role="form" method="POST">
+                    @csrf
+                    @method('PUT')
+                    <input type="hidden" value="{{$data->nik}}" id="ida" name="ida">
+                    <td>
+                         
+                            
+                            <input type="submit" class="btn" value="Keluar">
+                           
+                        </td>
+                        </form>
+                      </tr> 
                     @endforeach
                   </tbody>
                   
@@ -252,5 +289,11 @@ if(box == "anggota"){
                                 +"@endforeach"
 }
 
+</script>
+<script>
+	function openInNewTab(url) {
+		var win = window.open(url, '_blank');
+		win.focus();
+	}
 </script>
 @endsection
