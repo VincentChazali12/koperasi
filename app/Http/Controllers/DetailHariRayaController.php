@@ -35,15 +35,15 @@ class DetailHariRayaController extends Controller
      */
     public function store(Request $request)
     {
-        $qurban = detailQurban::create([
-            'id_qurban'=> $request->idq,
+        $raya = detailHariRaya::create([
+            'id_hari_raya'=> $request->idq,
             'simpanan'=> $request->nominal,
             'bulan'=> $request->bulan,
         ]);
-        if($qurban){
-            return redirect()->route('qurban.index')->with(['success' => 'Data Berhasil Disimpan!']);
+        if($raya){
+            return redirect()->route('hariraya.index')->with(['success' => 'Data Berhasil Disimpan!'])->with(['ss' => $request->nominal])->with(['dari' => $request->nama]);
         }else {
-            return redirect()->route('qurban.index')->with(['error' => 'Data Gagal Disimpan!']);
+            return redirect()->route('hariraya.index')->with(['error' => 'Data Gagal Disimpan!']);
         }
     }
 
@@ -51,15 +51,15 @@ class DetailHariRayaController extends Controller
     {
         $nik = explode(' ', $request->ida)[0];
 
-        $qurban = detailQurban::create([
-            'id_qurban'=> $request->idq,
+        $raya = detailHariRaya::create([
+            'id_hari_raya'=> $request->idq,
             'simpanan'=> $request->nominal,
             'bulan'=> $request->bulan,
         ]);
-        if($qurban){
-            return redirect()->route('qurban.show', $request->idq)->with(['success' => 'Data Berhasil Disimpan!']);
+        if($raya){
+            return redirect()->route('hariraya.show', $request->idq)->with(['success' => 'Data Berhasil Disimpan!'])->with(['dari' => explode(' ', $request->ida)[2]]);
         }else {
-            return redirect()->route('qurban.show', $request->idq)->with(['error' => 'Data Gagal Disimpan!']);
+            return redirect()->route('hariraya.show', $request->idq)->with(['error' => 'Data Gagal Disimpan!']);
         }
     }
 

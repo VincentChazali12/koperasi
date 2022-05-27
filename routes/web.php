@@ -41,5 +41,10 @@ Route::get('simulasi', function () {
     return view('SImulasi');
 });
 Route::get('hasilsimulasi', function () {
-    return view('hasilsimulasi');
+    return view('hasilsimulasi');});
+Route::get('kasMasuk', function () {
+    return view('kasMasuk');
+});
+Route::get('kasKeluar', function () {
+    return view('kasKeluar');
 });

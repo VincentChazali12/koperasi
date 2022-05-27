@@ -108,7 +108,7 @@
                         <p>Dengan ini mengajukan @php {{echo $_GET['ks'];   }} @endphp kepada Pengurus Koperasi Pegawai Republik Indonesia (KPRI) Kanwil Kementerian Agama Provinsi Riau, sebesar Rp.________________ dengan angsuran selama ___ bulan, uang tersebut akan saya pergunakan untuk ___________________</p>
                         <p>Dan sebagai pertimbangan perlu saya tambahkan hal-hal sebagai berikut:</p>
                         <ol>
-                            <li>Bahwa jumlah haji yang saya terima setiap bulan saat ini adalah sebesar Rp.________________</li>
+                            <li>Bahwa jumlah gaji yang saya terima setiap bulan saat ini adalah sebesar Rp.________________</li>
                             <li>Saya tidak akan melakukan pinjaman kepada tempat lain selama pinjaman saya pada Koperasi Kanwil Kementerian Agama belum selesai</li>
                             <li>Dan dengan melakukan pinjaman ini saya bersedia mentaati segala ketentuan yang ditetapkan oleh Koperasi dan apabila saya tidak melakukan pembayaran maka saya bersedia diselesaikan melalui jalur hukum yang berlaku oleh Pembina, Pengurus dan Pengawas Koperasi.</li>
                         </ol>

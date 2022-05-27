@@ -8,4 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class HariRaya extends Model
 {
     use HasFactory;
+    protected $fillable=['nik', 'tahun','nominal','status'];
+
 }

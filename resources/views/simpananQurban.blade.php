@@ -136,6 +136,17 @@
                 @if (session()->has('success'))
                   <div class="alert alert-primary">
                     {{ session()->get('success') }}
+                    <form action="kasMasuk" role="form" method="GET" target="_blank">
+                        <input type="hidden" name="sp" value = {{ session()->get('sp')}}>
+                        <input type="hidden" name="sw" value = {{ session()->get('sw')}}>
+                        <input type="hidden" name="swk" value = {{ session()->get('swk')}}>
+                        <input type="hidden" name="sm" value = {{ session()->get('sm')}}>
+                        <input type="hidden" name="ss" value = {{ session()->get('ss')}}>
+                        <input type="hidden" name="dari" value = {{ session()->get('dari')}}>
+                        <input type="hidden" name="dr" value = {{ session()->get('dr')}}>
+                        <input type="hidden" name="ket" value = "Setoran Sukarela ".{{ session()->get('dari')}}>
+                        <button type="submit" class="btn btn-default" data-dismiss="modal">Cetak Kas Masuk</button>
+                     </form>
                   </div>
                 @endif
                 <table id="example1" class="table table-bordered table-striped">
@@ -185,6 +196,7 @@
                       <input type="hidden" value="{{$data->idq}}" id="idq" name="idq">
                       <input type="hidden" name="nominal" id="nominal" value="{{$data->nominal}}">
                       <input type="hidden" name="bulan" id="bulan" value="{{date('m')}}">
+                      <input type="hidden" name="nama" id="nama" value="{{$data->nama}}">
                       <td><a href="{{ route('qurban.show', $data->idq) }}">Detail</a> | <input type="submit" class="btn" value="Tambah" style="padding:0px;">
                     </form>
                   </tr>

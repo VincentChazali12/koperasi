@@ -59,7 +59,7 @@ class QurbanController extends Controller
             'simpanan' => $request->nominal,
         ]);
         if($qurban){
-            return redirect()->route('qurban.index')->with(['success' => 'Data Berhasil Disimpan!']);
+            return redirect()->route('qurban.index')->with(['success' => 'Data Berhasil Disimpan!'])->with(['ss' => $request->nominal])->with(['dari' => explode(' ', $request->ida)[2]]);
         }else {
             return redirect()->route('qurban.index')->with(['error' => 'Data Gagal Disimpan!']);
         }

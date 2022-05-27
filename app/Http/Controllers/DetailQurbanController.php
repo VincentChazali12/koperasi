@@ -41,7 +41,7 @@ class detailQurbanController extends Controller
             'bulan'=> $request->bulan,
         ]);
         if($qurban){
-            return redirect()->route('qurban.index')->with(['success' => 'Data Berhasil Disimpan!']);
+            return redirect()->route('qurban.index')->with(['success' => 'Data Berhasil Disimpan!'])->with(['ss' => $request->nominal])->with(['dari' => $request->nama]);
         }else {
             return redirect()->route('qurban.index')->with(['error' => 'Data Gagal Disimpan!']);
         }
@@ -56,7 +56,7 @@ class detailQurbanController extends Controller
             'bulan'=> $request->bulan,
         ]);
         if($qurban){
-            return redirect()->route('qurban.show', $request->idq)->with(['success' => 'Data Berhasil Disimpan!']);
+            return redirect()->route('qurban.show', $request->idq)->with(['success' => 'Data Berhasil Disimpan!'])->with(['ss' => $request->nominal])->with(['dari' => explode(' ', $request->ida)[2]]);
         }else {
             return redirect()->route('qurban.show', $request->idq)->with(['error' => 'Data Gagal Disimpan!']);
         }

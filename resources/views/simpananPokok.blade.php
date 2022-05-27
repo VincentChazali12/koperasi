@@ -76,6 +76,17 @@
                 @if (session()->has('success'))
                   <div class="alert alert-primary">
                     {{ session()->get('success') }}
+                    <form action="kasMasuk" role="form" method="GET" target="_blank">
+                        <input type="hidden" name="sp" value = {{ session()->get('sp')}}>
+                        <input type="hidden" name="sw" value = {{ session()->get('sw')}}>
+                        <input type="hidden" name="swk" value = {{ session()->get('swk')}}>
+                        <input type="hidden" name="sm" value = {{ session()->get('sm')}}>
+                        <input type="hidden" name="ss" value = {{ session()->get('ss')}}>
+                        <input type="hidden" name="dari" value = {{ session()->get('dari')}}>
+                        <input type="hidden" name="dr" value = {{ session()->get('dr')}}>
+                        <input type="hidden" name="ket" value = "Setoran Wajib ".{{ session()->get('dari')}}>
+                        <button type="submit" class="btn btn-default" data-dismiss="modal">Cetak Kas Masuk</button>
+                     </form>
                   </div>
                 @endif
                 <table id="example1" class="table table-bordered table-striped">
@@ -121,6 +132,7 @@
                     
                   
                     <input type="hidden" value="{{$datas->nik}}" id="ida" name="ida">
+                    <input type="hidden" value="{{$datas->nama}}" id="nama" name="nama">
 
                     <td><a href="{{ route('pokok.show', $datas->nik) }}">Detail</a>&nbsp;|&nbsp; <input type="submit" class="btn" value="Tambah"></td>
                     </form>

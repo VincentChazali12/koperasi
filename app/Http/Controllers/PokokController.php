@@ -44,11 +44,11 @@ class PokokController extends Controller
     public function store(Request $request)
     {
         $pokok = pokok::create([
-            'spokok'=> 75000,
+            'spokok'=> 70000,
             'nik'=> $request->ida,
         ]);
         if($pokok){
-            return redirect()->route('pokok.index')->with(['success' => 'Data Berhasil Disimpan!']);
+            return redirect()->route('pokok.index')->with(['success' => 'Data Berhasil Disimpan!'])->with(['sw' => 70000])->with(['dari' => $request->nama]);
         }else {
             return redirect()->route('pokok.index')->with(['error' => 'Data Gagal Disimpan!']);
         }
