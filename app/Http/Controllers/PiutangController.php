@@ -76,6 +76,7 @@ class PiutangController extends Controller
             'usulan'=> $pinjaman,
             'sisa'=> $pinjaman,
             'waktu'=>$request->waktu,
+            'waktusisa'=>$request->waktu,
             'status'=>"Aktif",
             'id_anggota'=>$nik,
         ]);
@@ -133,13 +134,23 @@ class PiutangController extends Controller
     {
         $pinjaman=$request->sisa;
         $usulan=$request->usulan;
+        $waktus=$request->waktu;
+        $waktu=$request->waktusisa;
+        $waktubaru=$waktu-1;
         $angsuran_jasa=round($pinjaman*(0.18/12),-2);
-        $angsuran_total=round($usulan*(0.18/12)/(1-(pow((1+(0.18/12)),(-60)))),-3);
+        $angsuran_total=round($usulan*(0.18/12)/(1-(pow((1+(0.18/12)),(-$waktus)))),-3);
         $angsuran_pokok=round($angsuran_total-$angsuran_jasa);
         $sisa = round($pinjaman-$angsuran_pokok);
-        $id=$request->ida;
-        $waktu=$request->waktu;
-        $waktubaru=$waktu-1;
+        
+        if($waktubaru==$waktus-$waktus){
+            $pinjaman=$request->sisa;
+            $usulan=$request->usulan;
+            $angsuran_jasa=round($pinjaman*(0.18/12),-2);
+            $angsuran_total=round($usulan*(0.18/12)/(1-(pow((1+(0.18/12)),(-$waktus)))),-3);
+            $angsuran_pokok=round($angsuran_total-$angsuran_jasa);
+            $sisa = $angsuran_pokok;
+        }
+        $id=$request->ida; 
         $piutang = piutang::create([
             'usulan'=> $request->usulan,
             'angsuran_pokok'=>$angsuran_pokok,
@@ -153,7 +164,7 @@ class PiutangController extends Controller
         $piutangmaster = piutangmaster::findOrFail($ids);
         $piutangmaster->update([
             'sisa'=>$sisa,
-            'waktu'=>$waktubaru,
+            'waktusisa'=>$waktubaru,
         ]);
         if($piutangmaster){
             return redirect()->route('piutang.index')->with(['success' => 'Data Berhasil Disimpan!']);

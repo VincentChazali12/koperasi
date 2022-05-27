@@ -19,6 +19,7 @@ class CreatePiutangMastersTable extends Migration
             $table->integer('usulan');
             $table->integer('sisa');
             $table->integer('waktu');
+            $table->integer('waktusisa');
             $table->string('status',100);
             $table->string('id_anggota');
             

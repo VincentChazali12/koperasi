@@ -61,7 +61,6 @@
                     <th>Angsuran Pokok</th>
                     <th>Angsuran Jasa</th>
                     <th>Angsuran Total</th>
-                    <th>Total Hutang</th>
                     <th>Sisa Hutang</th>
                     <th>Jatuh Tempo</th>
                     <th>Keterangan</th>
@@ -91,7 +90,6 @@
                     <td>{{$data->angsuran_pokok}}</td>
                     <td>{{$data->angsuran_jasa}}</td>
                     <td>{{$data->angsuran_total}}</td>
-                    <td>{{$data->usulan}}</td>
                     <td>{{$data->sisa}}</td>
                     <td>{{$data->waktu}}</td>
                     <td>{{$data->ket}}</td>

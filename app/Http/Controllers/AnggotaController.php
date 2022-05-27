@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Anggota;
 use App\Models\Pokok;
+use App\Models\Qurban;
+use App\Models\HariRaya;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
@@ -25,9 +27,48 @@ class AnggotaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        $id=$request->ida;
+        $pokok = DB::select("SELECT SUM(pokoks.spokok) as total FROM anggotas, pokoks WHERE anggotas.nik = pokoks.nik AND anggotas.nik = '$request->ida'");
+        $qurban = DB::select("SELECT SUM(detail_qurbans.simpanan) as total FROM qurbans, detail_qurbans, anggotas WHERE qurbans.id = detail_qurbans.id_qurban AND qurbans.nik=anggotas.nik AND anggotas.nik = '$request->ida'");
+        $hariraya = DB::select("SELECT SUM(detail_hari_rayas.simpanan) as total FROM hari_rayas, detail_hari_rayas, anggotas WHERE hari_rayas.id = detail_hari_rayas.id_hari_raya AND hari_rayas.nik=anggotas.nik AND anggotas.nik = '$request->ida'");
+        $ss = $qurban + $hariraya;
+        $sp= 25000;
+        $sw = $pokok;
+
+        // $anggota = Anggota::findOrFail($id);
+        // $anggota->update([
+        //     'status' => 'keluar',
+        // ]);
+        $anggota = anggota::findOrFail($id);
+        $anggota->update([
+            'status'=>'Keluar',
+        ]);
+
+        // $qurbans = Qurban::findOrFail($id);
+   
+        // $qurbans->update([
+        //     'status' => 'tidak aktif',
+        // ]);
+        $qurbans = qurban::findOrFail($id);
+        $qurbans->update([
+            'status'=>'Tidak aktif',
+        ]);
+        // $harirayas = HariRaya::findOrFail($id);
+   
+        // $harirayas->update([
+        //     'status' => 'tidak aktif',
+        // ]);
+        $harirayas = hariraya::findOrFail($id);
+        $harirayas->update([
+            'status'=>'Tidak Aktif',
+        ]);
+        if ($anggota) {
+            return redirect()->route('pokok.index')->with(['successs' => 'Data Berhasil Diubah!'])->with(['sp'=>$sp])->with(['sw'=>$sw])->with(['dari'=>$anggota->nama])->with(['ss'=>$ss]);
+        } else {
+            return redirect()->route('pokok.index')->with(['error' => 'Data Gagal Disimpan!']);
+        }
     }
 
     /**
@@ -94,37 +135,38 @@ class AnggotaController extends Controller
      * @param  \App\Models\Anggota  $anggota
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request,$idaa)
     {
-        $pokok = DB::select("SELECT SUM(pokoks.spokok) as total FROM anggotas, pokoks WHERE anggotas.nik = pokoks.nik AND anggotas.nik = '$request->ida'");
-        $qurban = DB::select("SELECT SUM(detail_qurbans.simpanan) as total FROM qurbans, detail_qurbans, anggotas WHERE qurbans.id = detail_qurbans.id_qurban AND qurbans.nik=anggotas.nik AND anggotas.nik = '$request->ida'");
-        $hariraya = DB::select("SELECT SUM(detail_hari_rayas.simpanan) as total FROM hari_rayas, detail_hari_rayas, anggotas WHERE hari_rayas.id = detail_hari_rayas.id_hari_raya AND hari_rayas.nik=anggotas.nik AND anggotas.nik = '$request->ida'");
-        $ss = $qurban + $hariraya;
-        $sp= 25000;
-        $sw = $pokok;
+        // $id=$request->ida;
+        // $pokok = DB::select("SELECT SUM(pokoks.spokok) as total FROM anggotas, pokoks WHERE anggotas.nik = pokoks.nik AND anggotas.nik = '$request->ida'");
+        // $qurban = DB::select("SELECT SUM(detail_qurbans.simpanan) as total FROM qurbans, detail_qurbans, anggotas WHERE qurbans.id = detail_qurbans.id_qurban AND qurbans.nik=anggotas.nik AND anggotas.nik = '$request->ida'");
+        // $hariraya = DB::select("SELECT SUM(detail_hari_rayas.simpanan) as total FROM hari_rayas, detail_hari_rayas, anggotas WHERE hari_rayas.id = detail_hari_rayas.id_hari_raya AND hari_rayas.nik=anggotas.nik AND anggotas.nik = '$request->ida'");
+        // $ss = $qurban + $hariraya;
+        // $sp= 25000;
+        // $sw = $pokok;
 
-        $anggota = Anggota::findOrFail($id);
+        // $anggota = Anggota::findOrFail($id);
    
-        $anggota->update([
-            'status' => 'keluar',
-        ]);
+        // $anggota->update([
+        //     'status' => 'keluar',
+        // ]);
 
-        $qurbans = Qurban::findOrFail($id);
+        // $qurbans = Qurban::findOrFail($id);
    
-        $qurban->update([
-            'status' => 'tidak aktif',
-        ]);
+        // $qurbans->update([
+        //     'status' => 'tidak aktif',
+        // ]);
 
-        $harirayas = HariRaya::findOrFail($id);
+        // $harirayas = HariRaya::findOrFail($id);
    
-        $harirayas->update([
-            'status' => 'tidak aktif',
-        ]);
-        if ($anggota) {
-            return redirect()->route('pokok.index')->with(['successs' => 'Data Berhasil Diubah!'])->with(['sp'=>$sp])->with(['sw'=>$sw])->with(['dari'=>$anggota->nama])->with(['ss'=>$ss]);
-        } else {
-            return redirect()->route('pokok.index')->with(['error' => 'Data Gagal Disimpan!']);
-        }
+        // $harirayas->update([
+        //     'status' => 'tidak aktif',
+        // ]);
+        // if ($anggota) {
+        //     return redirect()->route('pokok.index')->with(['successs' => 'Data Berhasil Diubah!'])->with(['sp'=>$sp])->with(['sw'=>$sw])->with(['dari'=>$anggota->nama])->with(['ss'=>$ss]);
+        // } else {
+        //     return redirect()->route('pokok.index')->with(['error' => 'Data Gagal Disimpan!']);
+        // }
     }
 
     /**

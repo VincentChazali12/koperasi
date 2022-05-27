@@ -106,7 +106,7 @@
                     <th>TGl Usulan</th>
                     <th>Total Pinjaman</th>
                     <th>Sisa Hutang</th>
-                    <th>Waktu</th>
+                    <th>Waktu </th>
                     <th>status</th>
                     <th>Aksi</th>
                   </tr>
@@ -126,12 +126,13 @@
                           <td>{{$data->created_at}}</td>
                           <td>{{$data->usulan}}</td>
                           <td>{{$data->sisa}}</td>
-                          <td>{{$data->waktu}}</td>
+                          <td>{{$data->waktusisa}}</td>
                           <td>{{$data->status}}</td>
                           <input type="hidden" value="{{$data->id}}" id="ida" name="ida">
                           <input type="hidden" value="{{$data->sisa}}" id="sisa" name="sisa">
                           <input type="hidden" value="{{$data->usulan}}" id="usulan" name="usulan">
                           <input type="hidden" value="{{$data->waktu}}" id="waktu" name="waktu">
+                          <input type="hidden" value="{{$data->waktusisa}}" id="waktu" name="waktusisa">
                     <td><a href="{{ route('piutang.show', $data->id) }}">Detail</a>&nbsp;|&nbsp; <input type="submit" class="btn" value="Tambah"></td>
                     </form>
                       </tr>

@@ -219,14 +219,14 @@
                         <td>
                           {{$data->status}}
                         </td>
-                        <form onsubmit="return confirm('Apakah Anda Yakin ?');" action="{{ route('anggota.update',$data->nik)}}" role="form" method="POST">
-                    @csrf
-                    @method('PUT')
-                    <input type="hidden" value="{{$data->nik}}" id="ida" name="ida">
-                    <td>
+                        <form onsubmit="return confirm('Apakah Anda Yakin ?');" action="{{ route('anggota.create') }}" role="form" method="POST">
+                          @csrf
+                          @method('PUT')
+                          <input type="hidden" value="{{$data->nik}}" id="ida" name="ida">
+                        <td>
                          
                             
-                            <input type="submit" class="btn" value="Keluar">
+                        <input type="submit" class="btn" value="Keluar">
                            
                         </td>
                         </form>

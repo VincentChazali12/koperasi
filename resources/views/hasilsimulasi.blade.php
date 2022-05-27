@@ -65,7 +65,6 @@
                     <th>Angsuran Pokok</th>
                     <th>Angsuran Jasa</th>
                     <th>Angsuran Total</th>
-                    <th>Total Pinjaman</th>
                     <th>Sisa Hutang</th>
                     <th>Waktu</th>
                     <th>status</th>
@@ -95,7 +94,7 @@
                         @endphp
                       @endif
                         
-                      @if($no>0 and $no<=60)
+                      @if($no>0 and $no < 60)
                           @php
                               $angsuran_jasa=round($sisa*(0.18/12),-2);
                               $pinjaman=15000000;
@@ -104,7 +103,15 @@
                               $sisa = round($sisa-$angsuran_pokok);
                           @endphp
                       @endif
-                        
+                      @if ($no==60)
+                      @php
+                            $angsuran_jasa=round($sisa*(0.18/12),-2);
+                            $pinjaman=15000000;
+                            $angsuran_total=round($pinjaman*(0.18/12)/(1-(pow((1+(0.18/12)),(-60)))),-3);
+                            $angsuran_pokok=round($angsuran_total-$angsuran_jasa);
+                            $sisa=$angsuran_pokok;
+                      @endphp
+                      @endif
                       <tr>
                           <td>{{$no}}</td>
                           <td>Tono</td>
@@ -112,7 +119,6 @@
                           <td>{{$angsuran_pokok}}</td>
                           <td>{{$angsuran_jasa}}</td>
                           <td>{{$angsuran_total}}</td>
-                          <td>{{$pinjaman}}</td>
                           <td>{{$sisa}}</td>
                           <td>{{$waktu}}</td>
                           <td>Sudah Bayar</td>

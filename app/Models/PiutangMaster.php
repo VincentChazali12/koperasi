@@ -8,5 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class PiutangMaster extends Model
 {
     use HasFactory;
-    protected $fillable=['usulan','sisa','waktu','status','id_anggota'];
+    protected $fillable=['usulan','sisa','waktu','waktusisa','status','id_anggota'];
 }
