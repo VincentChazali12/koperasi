@@ -60,12 +60,12 @@
 
                       </div>
                       <div class="modal-body">
-                        <form action="{{route('piutang.store')}}" role="form" method="POST">
+                        <form action="{{route('simpananwajib.show','1')}}" role="form" method="POST">
                         @csrf
                           <div class="row">
                           <div class="form-group col-6">
-                              <label for="ida">id | Nama</label>
-                              <input type="text" class="form-control ida" id="ida" placeholder="Masukkan ida atau Nama" name="ida" list="daftarNama">
+                              <label for="ida">Nama</label>
+                              <input type="text" class="form-control ida" id="nama" placeholder="Masukkan Nama" name="nama" >
 
                             </div>
                           </div>

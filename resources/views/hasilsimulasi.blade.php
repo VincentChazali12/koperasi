@@ -75,14 +75,31 @@
                       <tr>
                   
                   @csrf
+                  @if (session()->has('successs'))
+                  <!-- <div class="alert alert-primary"> -->
+                     {{ session()->get('successs') }}
+                     <!-- <form action="kasKeluar" role="form" method="GET" target="_blank">
+                        <input type="hidden" name="sp" value = >
+                        <input type="hidden" name="sw" value = {{ session()->get('sw')}}>
+                        <input type="hidden" name="swk" value = {{ session()->get('swk')}}>
+                        <input type="hidden" name="sm" value = {{ session()->get('sm')}}>
+                        <input type="hidden" name="ss" value = {{ session()->get('ss')}}>
+                        <input type="hidden" name="dr" value = {{ session()->get('dr')}}>
+                        <input type="hidden" name="dari" value = {{ session()->get('dari')}}>
+                        <input type="hidden" name="ket" value = "Dikeluarkan Simpanan Anggota ".{{ session()->get('dari')}}>
+                        <button type="submit" class="btn btn-default" data-dismiss="modal">Cetak Kas Keluar</button>
+                     </form>
+                  </div> -->
+                
                   @php
                     $no=0;
                     $hasilsisa=0;
-                    $waktu=60;
+                    $waktu={{ session()->get('waktu')}};
+                    $waktubaru=$waktu;
                     $sisa=0;
-                    $pinjaman=15000000;                
+                    $pinjaman={{ session()->get('usulan')}};                
                   @endphp
-                @while($no<=60) 
+                @while($no<=$waktu) 
             
                       @if($no==0)
                          @php
@@ -94,45 +111,45 @@
                         @endphp
                       @endif
                         
-                      @if($no>0 and $no < 60)
+                      @if($no>0 and $no < $waktu)
                           @php
                               $angsuran_jasa=round($sisa*(0.18/12),-2);
                               $pinjaman=15000000;
-                              $angsuran_total=round($pinjaman*(0.18/12)/(1-(pow((1+(0.18/12)),(-60)))),-3);
+                              $angsuran_total=round($pinjaman*(0.18/12)/(1-(pow((1+(0.18/12)),(-$waktu)))),-3);
                               $angsuran_pokok=round($angsuran_total-$angsuran_jasa);
                               $sisa = round($sisa-$angsuran_pokok);
                           @endphp
                       @endif
-                      @if ($no==60)
+                      @if ($no==$waktu)
                       @php
                             $angsuran_jasa=round($sisa*(0.18/12),-2);
                             $pinjaman=15000000;
-                            $angsuran_total=round($pinjaman*(0.18/12)/(1-(pow((1+(0.18/12)),(-60)))),-3);
+                            $angsuran_total=round($pinjaman*(0.18/12)/(1-(pow((1+(0.18/12)),(-$waktu)))),-3);
                             $angsuran_pokok=round($angsuran_total-$angsuran_jasa);
                             $sisa=$angsuran_pokok;
                       @endphp
                       @endif
                       <tr>
                           <td>{{$no}}</td>
-                          <td>Tono</td>
-                          <td>May-1022</td>
+                          <td>{{ session()->get('nama')}}</td>
+                          <td>May-2022</td>
                           <td>{{$angsuran_pokok}}</td>
                           <td>{{$angsuran_jasa}}</td>
                           <td>{{$angsuran_total}}</td>
                           <td>{{$sisa}}</td>
-                          <td>{{$waktu}}</td>
+                          <td>{{$waktubaru}}</td>
                           <td>Sudah Bayar</td>
 
                       </tr>
                       
                       
                       @php
-                      $waktu--;
+                      $waktubaru--;
                       $no =$no+1;
                       @endphp
                 
                     @endwhile
-                      
+                    @endif
                   </tbody>
                   
                 </table>

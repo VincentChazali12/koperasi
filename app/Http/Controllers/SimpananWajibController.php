@@ -16,7 +16,9 @@ class SimpananWajibController extends Controller
      */
     public function index()
     {
-        //
+        return view('hasilsimulasi');
+        
+
     }
 
     /**
@@ -26,7 +28,7 @@ class SimpananWajibController extends Controller
      */
     public function create()
     {
-        //
+        
     }
 
     /**
@@ -65,9 +67,12 @@ class SimpananWajibController extends Controller
      * @param  \App\Models\SimpananWajib  $simpananWajib
      * @return \Illuminate\Http\Response
      */
-    public function show(SimpananWajib $simpananWajib)
+    public function show(Request $request)
     {
-        //
+        $nama=$request->nama;
+        $usulan=$request->usulan;
+        $waktu=$request->waktu;
+        return redirect()->route('anggota.index')->with(['successs' => 'Data Berhasil Diambil!'])->with(['nama'=>$nama])->with(['usulan'=>$usulan])->with(['waktu'=>$waktu]);
     }
 
     /**
