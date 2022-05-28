@@ -2,12 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\SimpananWajib;
 use Illuminate\Http\Request;
-use App\Models\Piutang;
-use Illuminate\Support\Facades\DB;
 
-class SimpananWajibController extends Controller
+class simulasiController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,9 +13,7 @@ class SimpananWajibController extends Controller
      */
     public function index()
     {
-        return view('hasilsimulasi');
-        
-
+        return view('simulasi');
     }
 
     /**
@@ -28,7 +23,7 @@ class SimpananWajibController extends Controller
      */
     public function create()
     {
-        
+        //
     }
 
     /**
@@ -37,32 +32,32 @@ class SimpananWajibController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store()
     {
-    
+        //
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\SimpananWajib  $simpananWajib
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Request $request)
+    public function show(Request $request,$id)
     {
         $nama=$request->nama;
         $usulan=$request->usulan;
         $waktu=$request->waktu;
-        return redirect()->route('anggota.index')->with(['successs' => 'Data Berhasil Diambil!'])->with(['nama'=>$nama])->with(['usulan'=>$usulan])->with(['waktu'=>$waktu]);
+        return redirect()->route('simpananwajib.index')->with(['successs' => 'Data Berhasil Diambil!'])->with(['nama'=>$nama])->with(['usulan'=>$usulan])->with(['waktu'=>$waktu]);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\SimpananWajib  $simpananWajib
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(SimpananWajib $simpananWajib)
+    public function edit($id)
     {
         //
     }
@@ -71,10 +66,10 @@ class SimpananWajibController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\SimpananWajib  $simpananWajib
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, SimpananWajib $simpananWajib)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -82,10 +77,10 @@ class SimpananWajibController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\SimpananWajib  $simpananWajib
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(SimpananWajib $simpananWajib)
+    public function destroy($id)
     {
         //
     }

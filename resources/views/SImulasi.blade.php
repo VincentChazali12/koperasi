@@ -26,7 +26,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Daftar Piutang</h1>
+            <h1>Simulasi</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -60,8 +60,9 @@
 
                       </div>
                       <div class="modal-body">
-                        <form action="{{route('simpananwajib.show','1')}}" role="form" method="POST">
+                        <form action="{{route('simulasis.show','id')}}" role="form" method="POST">
                         @csrf
+                        @method('GET')
                           <div class="row">
                           <div class="form-group col-6">
                               <label for="ida">Nama</label>

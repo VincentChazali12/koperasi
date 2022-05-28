@@ -142,7 +142,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="simulasi" class="nav-link">
+            <a href="simulasis" class="nav-link">
               <i class="nav-icon far fa-copy"></i>
               <p>
                 Simulasi

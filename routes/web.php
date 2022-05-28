@@ -26,6 +26,7 @@ Route::resource('modal', ModalController::class);
 Route::resource('piutang', PiutangController::class);
 Route::resource('piutangmaster', PiutangMasterController::class);
 Route::resource('simpananwajib',SimpananWajibController::class);
+Route::resource('simulasis',simulasiController::class);
 Route::get('pokok.report', 'PokokController@report');
 Route::post('simpanQurban', 'DetailQurbanController@store1')->name('simpanQurban');
 Route::post('simpanHariRaya', 'DetailHariRayaController@store1')->name('simpanHariRaya');
@@ -37,11 +38,11 @@ Route::get('suratHariRaya', 'HariRayaController@surat');
 Route::get('print', function () {
     return view('printForm');
 });
-Route::get('simulasi', function () {
-    return view('SImulasi');
-});
-Route::get('hasilsimulasi', function () {
-    return view('hasilsimulasi');});
+// Route::get('simulasi', function () {
+//     return view('SImulasi');
+// });
+// Route::get('hasilsimulasi', function () {
+//     return view('hasilsimulasi');});
 Route::get('kasMasuk', function () {
     return view('kasMasuk');
 });

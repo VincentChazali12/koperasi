@@ -12,11 +12,7 @@
   <link rel="stylesheet" href="../../dist/css/adminlte.min.css">
 @endsection
 @section('content')
-@if (session()->has('success'))
-        <div class="alert alert-primary">
-            {{ session()->get('success') }}
-        </div>
-@endif
+
   <!-- Main Sidebar Container -->
   
   <!-- Content Wrapper. Contains page content -->
@@ -26,7 +22,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Daftar Piutang</h1>
+            <h1>Simulasi</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -46,12 +42,14 @@
             <div class="card">
              <div class="card-body">
                 <!-- Button trigger modal -->
+                @csrf
+                     {{ session()->get('success') }}
                 <div class="row">
                     <div class="col-4">
-                      Dana Pinjaman : Rp 15.000.000
+                      Dana Pinjaman : Rp.{{ session()->get('usulan')}}
                     </div>
                     <div class="col-4">
-                      Waktu : 60 bulan
+                      Waktu : {{ session()->get('waktu')}} bulan
                     </div>
                   </div>
                 <!-- Button trigger modal -->
@@ -74,32 +72,18 @@
                   <tbody>
                       <tr>
                   
-                  @csrf
-                  @if (session()->has('successs'))
-                  <!-- <div class="alert alert-primary"> -->
-                     {{ session()->get('successs') }}
-                     <!-- <form action="kasKeluar" role="form" method="GET" target="_blank">
-                        <input type="hidden" name="sp" value = >
-                        <input type="hidden" name="sw" value = {{ session()->get('sw')}}>
-                        <input type="hidden" name="swk" value = {{ session()->get('swk')}}>
-                        <input type="hidden" name="sm" value = {{ session()->get('sm')}}>
-                        <input type="hidden" name="ss" value = {{ session()->get('ss')}}>
-                        <input type="hidden" name="dr" value = {{ session()->get('dr')}}>
-                        <input type="hidden" name="dari" value = {{ session()->get('dari')}}>
-                        <input type="hidden" name="ket" value = "Dikeluarkan Simpanan Anggota ".{{ session()->get('dari')}}>
-                        <button type="submit" class="btn btn-default" data-dismiss="modal">Cetak Kas Keluar</button>
-                     </form>
-                  </div> -->
+                  
                 
                   @php
                     $no=0;
                     $hasilsisa=0;
-                    $waktu={{ session()->get('waktu')}};
+                    $waktu=  session()->get('waktu');
                     $waktubaru=$waktu;
                     $sisa=0;
-                    $pinjaman={{ session()->get('usulan')}};                
+                    $pinjaman= session()->get('usulan');          
                   @endphp
-                @while($no<=$waktu) 
+                
+                  @while($no<=$waktu) 
             
                       @if($no==0)
                          @php
@@ -132,7 +116,7 @@
                       <tr>
                           <td>{{$no}}</td>
                           <td>{{ session()->get('nama')}}</td>
-                          <td>May-2022</td>
+                          <td>May-1022</td>
                           <td>{{$angsuran_pokok}}</td>
                           <td>{{$angsuran_jasa}}</td>
                           <td>{{$angsuran_total}}</td>
@@ -149,7 +133,7 @@
                       @endphp
                 
                     @endwhile
-                    @endif
+
                   </tbody>
                   
                 </table>

@@ -30,31 +30,17 @@ class AnggotaController extends Controller
     public function create(Request $request)
     {
         $id=$request->ida;
-        
 
-        // $anggota = Anggota::findOrFail($id);
-        // $anggota->update([
-        //     'status' => 'keluar',
-        // ]);
         $anggota = anggota::findOrFail($id);
         $anggota->update([
             'status'=>'Keluar',
         ]);
 
-        // $qurbans = Qurban::findOrFail($id);
-   
-        // $qurbans->update([
-        //     'status' => 'tidak aktif',
-        // ]);
         $qurbans = qurban::findOrFail($id);
         $qurbans->update([
             'status'=>'Tidak aktif',
         ]);
-        // $harirayas = HariRaya::findOrFail($id);
-   
-        // $harirayas->update([
-        //     'status' => 'tidak aktif',
-        // ]);
+
         $harirayas = hariraya::findOrFail($id);
         $harirayas->update([
             'status'=>'Tidak Aktif',
@@ -66,9 +52,9 @@ class AnggotaController extends Controller
         $sp= 25000;
         $sw = $pokok;
         if ($anggota) {
-            return redirect()->route('pokok.index')->with(['successs' => 'Data Berhasil Diubah!'])->with(['sp'=>$sp])->with(['sw'=>$sw])->with(['dari'=>$anggota->nama])->with(['ss'=>$ss]);
+            return redirect()->route('anggota.index')->with(['successs' => 'Data Berhasil Diubah!'])->with(['sp'=>$sp])->with(['sw'=>$sw])->with(['dari'=>$anggota->nama])->with(['ss'=>$ss]);
         } else {
-            return redirect()->route('pokok.index')->with(['error' => 'Data Gagal Disimpan!']);
+            return redirect()->route('anggota.index')->with(['error' => 'Data Gagal Disimpan!']);
         }
     }
 
