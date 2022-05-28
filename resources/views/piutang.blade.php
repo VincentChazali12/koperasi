@@ -120,7 +120,6 @@
                   <form onsubmit="return confirm('Apakah Anda Yakin ?');" action="{{ route('piutang.update',$data->id) }}" role="form" method="POST">
                   @csrf
                   @method('PUT')
-                      <tr>
                           <td>{{$no++}}</td>
                           <td>{{$data->nama}}</td>
                           <td>{{$data->created_at}}</td>

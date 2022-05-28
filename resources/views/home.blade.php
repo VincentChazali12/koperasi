@@ -223,7 +223,7 @@
                           {{$data->status}}
                         </td>
                           <input type="hidden" value="{{$data->nik}}" id="ida" name="ida">
-                          <td><input type="submit" class="btn" value="Tambah"></td>
+                          <td><input type="submit" class="btn" value="Keluar"></td>
                     </form>
                       </tr>
                       
