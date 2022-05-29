@@ -53,7 +53,7 @@ class SimpananWajibController extends Controller
         $nama=$request->nama;
         $usulan=$request->usulan;
         $waktu=$request->waktu;
-        return redirect()->route('anggota.index')->with(['successs' => 'Data Berhasil Diambil!'])->with(['nama'=>$nama])->with(['usulan'=>$usulan])->with(['waktu'=>$waktu]);
+        return redirect()->route('anggota2.index')->with(['successs' => 'Data Berhasil Diambil!'])->with(['nama'=>$nama])->with(['usulan'=>$usulan])->with(['waktu'=>$waktu]);
     }
 
     /**

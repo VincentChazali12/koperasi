@@ -15,10 +15,10 @@ class PiutangMasterController extends Controller
      */
     public function index()
     {
-        $piutangs=DB::select('SELECT piutang_masters.* , anggotas.nama FROM piutang_masters, anggotas WHERE piutang_masters.id_anggota
-        = anggotas.nik');
-        $anggota = DB::select('SELECT id, nama, nik FROM anggotas');
-        return view('piutang', compact('piutangs','anggota'));
+        // $piutangs=DB::select('SELECT piutang_masters.* , anggotas.nama FROM piutang_masters, anggotas WHERE piutang_masters.id_anggota
+        // = anggotas.nik');
+        // $anggota = DB::select('SELECT id, nama, nik FROM anggotas');
+        // return view('piutang', compact('piutangs','anggota'));
     }
 
     /**
@@ -39,26 +39,26 @@ class PiutangMasterController extends Controller
      */
     public function store(Request $request)
     {
-        $pinjaman=$request->usulan;
-        $angsuran_jasa=round($pinjaman*(0.18/12),-3);
-        $angsuran_total=round($pinjaman*(0.18/12)/(1-(pow((1+(0.18/12)),(-60)))),-3);
-        $angsuran_pokok=round($angsuran_total-$angsuran_jasa,-2);
-        $sisa = round($pinjaman-$angsuran_pokok);
-        $piutang = piutang::create([
-            'usulan'=> $request->usulan,
-            'angsuran_pokok'=>$angsuran_pokok,
-            'angsuran_jasa'=>$angsuran_jasa,
-            'angsuran_total'=>$angsuran_total,
-            'sisa'=> $pinjaman,
-            'waktu'=>$request->waktu,
-            'ket'=>"Belum Bayar",
-            'id_piutang'=> $request->ida,
-        ]); 
-        if($piutang){
-            return redirect()->route('piutang.show')->with(['success' => 'Data Berhasil Disimpan!']);
-        }else {
-            return redirect()->route('piutang.index')->with(['error' => 'Data Gagal Disimpan!']);
-        }
+        // $pinjaman=$request->usulan;
+        // $angsuran_jasa=round($pinjaman*(0.18/12),-3);
+        // $angsuran_total=round($pinjaman*(0.18/12)/(1-(pow((1+(0.18/12)),(-60)))),-3);
+        // $angsuran_pokok=round($angsuran_total-$angsuran_jasa,-2);
+        // $sisa = round($pinjaman-$angsuran_pokok);
+        // $piutang = piutang::create([
+        //     'usulan'=> $request->usulan,
+        //     'angsuran_pokok'=>$angsuran_pokok,
+        //     'angsuran_jasa'=>$angsuran_jasa,
+        //     'angsuran_total'=>$angsuran_total,
+        //     'sisa'=> $pinjaman,
+        //     'waktu'=>$request->waktu,
+        //     'ket'=>"Belum Bayar",
+        //     'id_piutang'=> $request->ida,
+        // ]); 
+        // if($piutang){
+        //     return redirect()->route('piutang.show')->with(['success' => 'Data Berhasil Disimpan!']);
+        // }else {
+        //     return redirect()->route('piutang.index')->with(['error' => 'Data Gagal Disimpan!']);
+        // }
     }
 
     /**

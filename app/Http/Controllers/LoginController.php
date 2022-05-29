@@ -96,7 +96,7 @@ class LoginController extends Controller
         $emails = DB::select("SELECT email from users where email='$email'");
         $passwords=DB::select("SELECT users.password from users where users.password='$password'");
         if($emails and $passwords ){
-            return redirect()->route('anggota.index')->with(['successss' => 'Berhasil Login!']);
+            return redirect()->route('anggota2.index')->with(['successss' => 'Berhasil Login!']);
         }else{
             return view('Auth/login')->with(['successss' => 'Email atau Password Salah!']);
         }

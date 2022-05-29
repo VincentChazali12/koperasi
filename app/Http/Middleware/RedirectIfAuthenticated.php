@@ -19,15 +19,15 @@ class RedirectIfAuthenticated
      */
     public function handle(Request $request, Closure $next, $roles)
     {
-        if (!Auth::check()) {
-            return redirect('login');
-        }
-        $user = Auth::user();
+        // if (!Auth::check()) {
+        //     return redirect('login');
+        // }
+        // $user = Auth::user();
 
-        if($user->level == $roles)
-            return $next($request);
+        // if($user->level == $roles)
+        //     return $next($request);
 
 
-        return redirect('login')->with('error',"kamu gak punya akses");
+        // return redirect('login')->with('error',"kamu gak punya akses");
     }
 }

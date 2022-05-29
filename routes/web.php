@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::resource('/', LoginController::class);
 Route::resource('anggota', AnggotaController::class);
+Route::resource('anggota2', Anggota2Controller::class);
 Route::resource('pokok', PokokController::class);
 Route::resource('qurban', QurbanController::class);
 Route::resource('hariraya', HariRayaController::class);
@@ -24,7 +25,6 @@ Route::resource('detailHariRaya', DetailHariRayaController::class);
 Route::resource('modal', ModalController::class);
 
 Route::resource('piutang', PiutangController::class);
-Route::resource('piutangmaster', PiutangMasterController::class);
 Route::resource('simpananwajib',SimpananWajibController::class);
 Route::resource('simulasis',simulasiController::class);
 Route::resource('dashboards',DashboardController::class);
@@ -32,6 +32,7 @@ Route::resource('sdashboard',DashboardssController::class);
 
 Route::get('pokok.report', 'PokokController@report');
 Route::post('simpanQurban', 'DetailQurbanController@store1')->name('simpanQurban');
+Route::post('keluar', 'Anggota2Controller@keluar')->name('keluar');
 Route::post('simpanHariRaya', 'DetailHariRayaController@store1')->name('simpanHariRaya');
 Route::get('suratQurban', 'QurbanController@surat');
 Route::get('suratHariRaya', 'HariRayaController@surat');

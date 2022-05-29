@@ -16,6 +16,14 @@ class CreateAnggota2sTable extends Migration
         Schema::create('anggota2s', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
+            $table->string('nama',100);
+            $table->string('ttl', 100);
+            $table->string('nik',100)->unique();
+            $table->string('alamat',100);
+            $table->string('tempat_tugas',100);
+            $table->string('telp',100);
+            $table->string('norek',100);
+            $table->string('status',10);
         });
     }
 
