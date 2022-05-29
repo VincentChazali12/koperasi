@@ -46,6 +46,9 @@
                 <button class="btn btn-primary" data-toggle="modal" data-target="#myModal1">
                   Cetak Surat Permohonan BSI
                 </button>
+                <button class="btn btn-primary" onclick="excel()">
+                  Unduh Laporan Data
+                </button>
 
                 <!-- Modal -->
                 <div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -169,4 +172,20 @@
 <!-- AdminLTE App -->
 <script src="dist/js/adminlte.min.js"></script>
 <!-- Page specific script -->
+<script>
+  function excel(){
+    $(document).ready(function () {
+    $("#example1").table2excel({
+        filename: "Data.xls"
+    });
+ });
+  }
+</script>
+
+<script src=
+"//ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js">
+</script>
+<script src=
+"//cdn.rawgit.com/rainabba/jquery-table2excel/1.1.0/dist/jquery.table2excel.min.js">
+</script>
 @endsection

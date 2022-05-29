@@ -89,7 +89,7 @@
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
           <li class="nav-item">
-            <a href="anggota" class="nav-link">
+            <a href="../anggota" class="nav-link">
               <i class="nav-icon far fa-image"></i>
               <p>
                 Anggota
@@ -106,25 +106,25 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="pokok" class="nav-link">
+                <a href="../pokok" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Simpanan Pokok</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="modal" class="nav-link">
+                <a href="../modal" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Simpanan Modal</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="qurban" class="nav-link">
+                <a href="../qurban" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>tabungan kurban </p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="hariraya" class="nav-link">
+                <a href="../hariraya" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>tabungan hari raya </p>
                 </a>
@@ -133,7 +133,7 @@
             </ul>
           </li>
           <li class="nav-item">
-            <a href="piutang" class="nav-link">
+            <a href="../piutang" class="nav-link">
               <i class="nav-icon far fa-copy"></i>
               <p>
                 Piutang
@@ -141,7 +141,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="simulasis" class="nav-link">
+            <a href="../simulasis" class="nav-link">
               <i class="nav-icon far fa-copy"></i>
               <p>
                 Simulasi
