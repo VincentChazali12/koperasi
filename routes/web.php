@@ -27,6 +27,8 @@ Route::resource('piutang', PiutangController::class);
 Route::resource('piutangmaster', PiutangMasterController::class);
 Route::resource('simpananwajib',SimpananWajibController::class);
 Route::resource('simulasis',simulasiController::class);
+Route::resource('dashboards',DashboardController::class);
+Route::resource('sdashboard',DashboardssController::class);
 Route::get('pokok.report', 'PokokController@report');
 Route::post('simpanQurban', 'DetailQurbanController@store1')->name('simpanQurban');
 Route::post('simpanHariRaya', 'DetailHariRayaController@store1')->name('simpanHariRaya');

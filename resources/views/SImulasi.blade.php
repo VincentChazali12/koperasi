@@ -47,7 +47,7 @@
              <div class="card-body">
                 <!-- Button trigger modal -->
                 <button class="btn btn-primary" data-toggle="modal" data-target="#myModal">
-                  Tambah Pinjaman
+                  Mulai Simulasi
                 </button>
 
                 <!-- Modal -->
