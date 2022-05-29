@@ -39,16 +39,71 @@
           <div class="col-12">
             <div class="card">
              <div class="card-body">
+                <!-- Button trigger modal -->
+                
+               
+                <!-- Button trigger modal -->
+                <button class="btn btn-primary" data-toggle="modal" data-target="#myModal1">
+                  Cetak Surat Permohonan BSI
+                </button>
 
                 <!-- Modal -->
-                  <div>
-                  </div>
-                  
+                <div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                  <div class="modal-dialog modal-lg" >
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h4 class="modal-title" id="myModalLabel">Keperluan Surat</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+
+                      </div>
+                      <div class="modal-body">
+                        <form action="prints" role="form" method="GET" target="_blank">
+                        <div class="form-group">
+                            <label for="ks">Keperluan Surat</label>
+                            <select class="form-control ks" id="ks" name="ks">
+                              <option value=""></option>
+                              <option value="Perihal">Debet Tunjangan Kinerja Pegawai Kantor Wilayah Kementrian Agama Provinsi Riau</option>
+                            </select>
+                          </div>
+                          
+                          <div class="form-group">
+                            <label for="sifat">Sifat</label>
+                            <select class="form-control sf" id="sifat" name="sifat">
+                              <option value=""></option>
+                              <option value="sifat">Penting</option>
+                            </select>
+                          </div>
+                          <div class="row">
+                            <div class="form-group col-6">
+                              <label for="tanggal">Tanggal Pengajuan</label>
+                              <input type="text" class="form-control tanggal" name="tanggal" id="tanggal" placeholder="Contoh: 12 Desember 2022" >
+                            </div>
+                            <div class="form-group col-6">
+                              <label for="nama">Nama</label>
+                              <input type="text" class="form-control nama" name="nama" id="nama" placeholder="Masukkan Nama" >
+                            </div>
+                          </div>
+                          <div class="form-group" id="fbaru">
+                            
+                          </div>
+                          <div class="form-group">
+                            <button type="submit" class="btn btn-primary">Cetak</button>
+                          </div>
+                        </form>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                      </div>
+                    </div><!-- /.modal-content -->
+                  </div><!-- /.modal-dialog -->
+                </div><!-- /.modal -->
+</br></br>
+
                   
                     
 
                 <table id="example1" class="table table-bordered table-striped">
-                  <thead>
+                  <tbody>
                   <tr>
                     <th>Total Anggota</th><td>
                         @foreach($totalanggota as $data)
@@ -75,7 +130,7 @@
                         {{$data->totalsm}}@endforeach
                         </td></tr>
                   </tr>
-                  </thead>
+                  </tbody>
                   
                 </table>
                 
