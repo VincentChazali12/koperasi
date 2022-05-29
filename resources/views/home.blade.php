@@ -14,11 +14,7 @@
 @section('content')
 
   <!-- Main Sidebar Container -->
-  @if (!session()->has('successss'))
-        @php
-            return view('Auth/login')
-        @endphp
-      @endif
+  
   <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -124,7 +120,7 @@
 
                       </div>
                       <div class="modal-body">
-                        <form action="print" role="form" method="GET" target="_blank">
+                        <form action="print" role="form" method="GET">
                           <div class="form-group">
                             <label for="ks">Keperluan Surat</label>
                             <select class="form-control ks" id="ks" name="ks">
@@ -201,7 +197,6 @@
                       <tr>
                       <form onsubmit="return confirm('Apakah Anda Yakin ?');" action="{{ route('anggota.create') }}" role="form" method="POST">
                   @csrf
-                  @method('PUT')
                         <td>
                           {{$data->nik}}
                         </td>

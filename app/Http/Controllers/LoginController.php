@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
@@ -17,10 +18,7 @@ class LoginController extends Controller
     public function index()
     {
         
-        return view('login.index',[
-            'title'=>'Login',
-            'active'=>'login'
-        ]);
+        return view('Auth/login');
     }
 
     /**
@@ -28,9 +26,19 @@ class LoginController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        
+        $credentials = $request->validate([
+            'email'=>'required|email:dns',
+            'password'=>'required'
+        ]);
+        
+        if($credentials){
+            $request->session()->regenerate();
+            return redirect()->route('dashboards.index');
+        }
+        return back()->with('loginError','Login Failed!');
     }
 
     /**
@@ -41,13 +49,37 @@ class LoginController extends Controller
      */
     public function store(Request $request)
     {
-        $raya = user::create([
-            'name'=> $request->nama,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-            'status' => "Aktif",
+        // $raya = user::create([
+        //     'name'=> $request->nama,
+        //     'email' => $request->email,
+        //     'password' => Hash::make($request->password),
+        //     'status' => "Aktif",
+        // ]);
+        // return redirect()->route('login.index');
+        $validateddata=$request->validate([
+            'name' =>'required|max:255',
+            'email' =>'required|email|unique:users',
+            'password'=>'required|min:8|max:255'
+        
         ]);
-        return redirect()->route('login.index');
+        $validateddata['password'] = Hash::make($validateddata['password']);
+            User::create($validateddata);
+            $request->session()->flash('sucess','Registration successfull! Please login');
+            return redirect()->route('login.index');
+    }
+
+    public function authenticate(Request $request){
+            $credentials = $request->validate([
+                'email'=>'required|email:dns',
+                'password'=>'required'
+            ]);
+
+            if(Auth::attempt($credentials)){
+                $request->session()->regenerate();
+                return redirect()->route('dashboards');
+            }
+            return back()->with('loginError','Login Failed!');
+
     }
 
     /**
@@ -63,11 +95,10 @@ class LoginController extends Controller
         
         $emails = DB::select("SELECT email from users where email='$email'");
         $passwords=DB::select("SELECT users.password from users where users.password='$password'");
-        $status=DB::select("SELECT status from users where email='$email'");
-        if($emails and $passwords  ){
+        if($emails and $passwords ){
             return redirect()->route('anggota.index')->with(['successss' => 'Berhasil Login!']);
         }else{
-            return view('Auth/login')->with(['error' => 'Email atau Password Salah!']);
+            return view('Auth/login')->with(['successss' => 'Email atau Password Salah!']);
         }
     }
 

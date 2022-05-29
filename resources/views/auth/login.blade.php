@@ -17,9 +17,13 @@
                 <div class="card-header">{{ __('Login') }}</div>
 
                 <div class="card-body">
-                    <form method="POST" action="login">
-                        @csrf
-                        @method('GET')
+                    @if(session()->has('successss'))
+                    <div class="alert alert-success" role="alert">
+                    {{ session()->get('successss') }}
+                    </div>
+                    @endif
+                    <form action="{{ route('login.show','1') }}" method="GET" >
+                    @csrf
                         <div class="row mb-3">
                             <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('Email Address') }}</label>
 

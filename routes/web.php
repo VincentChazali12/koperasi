@@ -30,7 +30,6 @@ Route::resource('simulasis',simulasiController::class);
 Route::resource('dashboards',DashboardController::class);
 Route::resource('sdashboard',DashboardssController::class);
 
-Route::resource('sregister',RegisterController::class);
 Route::get('pokok.report', 'PokokController@report');
 Route::post('simpanQurban', 'DetailQurbanController@store1')->name('simpanQurban');
 Route::post('simpanHariRaya', 'DetailHariRayaController@store1')->name('simpanHariRaya');
@@ -42,8 +41,8 @@ Route::get('suratHariRaya', 'HariRayaController@surat');
 Route::get('print', function () {
     return view('printForm');
 });
-Route::get('login',LoginController::class,'index');
-Route::get('login',LoginController::class,'authenticate');
+Route::resource('login',LoginController::class);
+Route::post('authenticate','LoginController@authenticate')->name('authenticate');
 Route::get('registers', function () {
     return view('Auth/register');
 });
