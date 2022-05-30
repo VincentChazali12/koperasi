@@ -68,6 +68,25 @@ class ModalController extends Controller
     {
         //
     }
+    public function suratm(Request $request)
+    {
+        $from =  explode('/', $request->tahun)[0] . "-06";
+        $to = explode('/', $request->tahun)[1]."-05";
+        $data = DB::select("SELECT detail_qurbans.*, qurbans.nik
+                            FROM detail_qurbans, qurbans 
+                            WHERE detail_qurbans.id_qurban = qurbans.id 
+                                AND qurbans.tahun = '$request->tahun' ");;
+
+        $data1 = DB::select("SELECT x.nik, x.nama, x.tahun, x.nominal, SUM(x.simpanan) as total, x.idq, x.status
+                            FROM(SELECT anggotas.id as ida, anggotas.nama, anggotas.nik, qurbans.tahun, qurbans.id as idq, qurbans.nominal, qurbans.status, detail_qurbans.simpanan 
+                                FROM anggotas,qurbans,detail_qurbans 
+                                WHERE anggotas.nik = qurbans.nik 
+                                    AND qurbans.id = detail_qurbans.id_qurban AND qurbans.tahun='$request->tahun') as x 
+                            GROUP BY x.idq;");
+        
+        
+        return view('suratQurban', compact('data','from','to','data1'));
+    }
 
     /**
      * Show the form for editing the specified resource.

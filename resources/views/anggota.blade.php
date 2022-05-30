@@ -195,7 +195,7 @@
                     
                             
                       <tr>
-                      <form onsubmit="return confirm('Apakah Anda Yakin ?');" action="{{ route('keluar') }}" role="form" method="POST">
+                      <form onsubmit="return confirm('Apakah Anda Yakin ?');" action="{{ route('dashboards.index') }}" role="form" method="POST">
                       @csrf  
                       <td>
                           {{$data->nik}}

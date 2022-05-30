@@ -36,6 +36,8 @@ Route::post('keluar', 'Anggota2Controller@keluar')->name('keluar');
 Route::post('simpanHariRaya', 'DetailHariRayaController@store1')->name('simpanHariRaya');
 Route::get('suratQurban', 'QurbanController@surat');
 Route::get('suratHariRaya', 'HariRayaController@surat');
+Route::get('suratModal', 'QurbanController@suratm');
+
 
 
 
