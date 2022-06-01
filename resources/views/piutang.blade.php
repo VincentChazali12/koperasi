@@ -2,104 +2,104 @@
 @section('css')
 <!-- Google Font: Source Sans Pro -->
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="../../plugins/fontawesome-free/css/all.min.css">
-  <!-- DataTables -->
-  <link rel="stylesheet" href="../../plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
-  <link rel="stylesheet" href="../../plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
-  <link rel="stylesheet" href="../../plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
-  <!-- Theme style -->
-  <link rel="stylesheet" href="../../dist/css/adminlte.min.css">
+<!-- Font Awesome -->
+<link rel="stylesheet" href="../../plugins/fontawesome-free/css/all.min.css">
+<!-- DataTables -->
+<link rel="stylesheet" href="../../plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+<link rel="stylesheet" href="../../plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+<link rel="stylesheet" href="../../plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
+<!-- Theme style -->
+<link rel="stylesheet" href="../../dist/css/adminlte.min.css">
 @endsection
 @section('content')
 
-  <!-- Main Sidebar Container -->
-  
-  <!-- Content Wrapper. Contains page content -->
+<!-- Main Sidebar Container -->
+
+<!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
-    <!-- Content Header (Page header) -->
-    <section class="content-header">
-      <div class="container-fluid">
-        <div class="row mb-2">
-          <div class="col-sm-6">
-            <h1>Daftar Piutang</h1>
-          </div>
-          <div class="col-sm-6">
-            <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Piutang</li>
-            </ol>
-          </div>
+  <!-- Content Header (Page header) -->
+  <section class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          <h1>Daftar Piutang</h1>
         </div>
-      </div><!-- /.container-fluid -->
-    </section>
+        <div class="col-sm-6">
+          <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item"><a href="#">Home</a></li>
+            <li class="breadcrumb-item active">Piutang</li>
+          </ol>
+        </div>
+      </div>
+    </div><!-- /.container-fluid -->
+  </section>
 
-    <!-- Main content -->
-    <section class="content">
-      <div class="container-fluid">
-        <div class="row">
-          <div class="col-12">
-            <div class="card">
-             <div class="card-body">
-                <!-- Button trigger modal -->
-                <button class="btn btn-primary" data-toggle="modal" data-target="#myModal">
-                  Tambah Pinjaman
-                </button>
+  <!-- Main content -->
+  <section class="content">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-12">
+          <div class="card">
+            <div class="card-body">
+              <!-- Button trigger modal -->
+              <button class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+                Tambah Pinjaman
+              </button>
+              
+              <!-- Modal -->
+              <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h4 class="modal-title" id="myModalLabel">Tambah Pinjaman</h4>
+                      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 
-                <!-- Modal -->
-                <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                  <div class="modal-dialog modal-lg" >
-                    <div class="modal-content">
-                      <div class="modal-header">
-                        <h4 class="modal-title" id="myModalLabel">Tambah Pinjaman</h4>
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-
-                      </div>
-                      <div class="modal-body">
-                        <form action="{{route('piutang.store')}}" role="form" method="POST">
+                    </div>
+                    <div class="modal-body">
+                      <form action="{{route('piutang.store')}}" role="form" method="POST">
                         @csrf
-                          <div class="row">
+                        <div class="row">
                           <div class="form-group col-6">
-                              <label for="ida">id | Nama</label>
-                              <input type="text" class="form-control ida" id="ida" placeholder="Masukkan ida atau Nama" name="ida" list="daftarNama">
-                              <datalist id="daftarNama">
-                                @foreach($anggota as $data)
-                                  <option value="{{$data->nik}} | {{$data->nama}}"></option>
-                                @endforeach
-                              </datalist>
+                            <label for="ida">id | Nama</label>
+                            <input type="text" class="form-control ida" id="ida" placeholder="Masukkan ida atau Nama" name="ida" list="daftarNama">
+                            <datalist id="daftarNama">
+                              @foreach($anggota as $data)
+                              <option value="{{$data->nik}} | {{$data->nama}}"></option>
+                              @endforeach
+                            </datalist>
 
-                            </div>
                           </div>
-                          <div class="row">
-                            <div class="form-group col-6">
-                              <label for="usulan">Usulan Pinjaman</label>
-                              <input type="text" class="form-control usulan" name="usulan" id="usulan" placeholder="Masukkan Usulan Pinjaman">
-                            </div>
-                            <div class="form-group col-6">
-                              <label for="waktu">Jangka Waktu</label>
-                              <input type="text" class="form-control waktu" name="waktu" id="waktu" placeholder="Masukkan Jangka Waktu Pinjaman">
-                            </div>
+                        </div>
+                        <div class="row">
+                          <div class="form-group col-6">
+                            <label for="usulan">Usulan Pinjaman</label>
+                            <input type="text" class="form-control usulan" name="usulan" id="usulan" placeholder="Masukkan Usulan Pinjaman">
                           </div>
-                          <div class="row">
+                          <div class="form-group col-6">
+                            <label for="waktu">Jangka Waktu</label>
+                            <input type="text" class="form-control waktu" name="waktu" id="waktu" placeholder="Masukkan Jangka Waktu Pinjaman">
                           </div>
-                          <button type="submit" class="btn btn-primary col-12" >Tambah</button>
-                        </form>
-                      </div>
-                      <div class="modal-footer"> 
-                        <button type="button"  class="btn btn-default" data-dismiss="modal">Batal</button>
-                      </div>
-                    </div><!-- /.modal-content -->
-                  </div><!-- /.modal-dialog -->
-                </div><!-- /.modal -->
-                <!-- Button trigger modal -->
-                <br><br>
-                @if (session()->has('success'))
-        <div class="alert alert-primary">
-            {{ session()->get('success') }}
-        </div>
-@endif
-                <table id="example1" class="table table-bordered table-striped">
-                  <thead>
+                        </div>
+                        <div class="row">
+                        </div>
+                        <button type="submit" class="btn btn-primary col-12">Tambah</button>
+                      </form>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
+                    </div>
+                  </div><!-- /.modal-content -->
+                </div><!-- /.modal-dialog -->
+              </div><!-- /.modal -->
+              <!-- Button trigger modal -->
+              <br><br>
+              @if (session()->has('success'))
+              <div class="alert alert-primary">
+                {{ session()->get('success') }}
+              </div>
+              @endif
+              <table id="example2" class="table table-bordered table-striped">
+                <thead>
                   <tr>
                     <th>No</th>
                     <th>Nama</th>
@@ -109,49 +109,49 @@
                     <th>Waktu </th>
                     <th>Aksi</th>
                   </tr>
-                  </thead>
-                  <tbody>
-                    @php
-                    $no = 0
-                    @endphp
-                      @foreach($piutangs as $data)
-                      <tr>
-                  <form onsubmit="return confirm('Apakah Anda Yakin ?');" action="{{ route('piutang.update',$data->id) }}" role="form" method="POST">
-                  @csrf
-                  @method('PUT')
-                          <td>{{$no++}}</td>
-                          <td>{{$data->nama}}</td>
-                          <td>{{$data->created_at}}</td>
-                          <td>{{$data->usulan}}</td>
-                          <td>{{$data->sisa}}</td>
-                          <td>{{$data->waktusisa}}</td>
-                          <input type="hidden" value="{{$data->id}}" id="ida" name="ida">
-                          <input type="hidden" value="{{$data->sisa}}" id="sisa" name="sisa">
-                          <input type="hidden" value="{{$data->usulan}}" id="usulan" name="usulan">
-                          <input type="hidden" value="{{$data->waktu}}" id="waktu" name="waktu">
-                          <input type="hidden" value="{{$data->waktusisa}}" id="waktu" name="waktusisa">
-                    <td><a href="{{ route('piutang.show', $data->id) }}">Detail</a>&nbsp;|&nbsp; <input type="submit" class="btn" value="Tambah"></td>
+                </thead>
+                <tbody>
+                  @php
+                  $no = 0
+                  @endphp
+                  @foreach($piutangs as $data)
+                  <tr>
+                    <form onsubmit="return confirm('Apakah Anda Yakin ?');" action="{{ route('piutang.update',$data->id) }}" role="form" method="POST">
+                      @csrf
+                      @method('PUT')
+                      <td>{{$no++}}</td>
+                      <td>{{$data->nama}}</td>
+                      <td>{{$data->created_at}}</td>
+                      <td>{{$data->usulan}}</td>
+                      <td>{{$data->sisa}}</td>
+                      <td>{{$data->waktusisa}}</td>
+                      <input type="hidden" value="{{$data->id}}" id="ida" name="ida">
+                      <input type="hidden" value="{{$data->sisa}}" id="sisa" name="sisa">
+                      <input type="hidden" value="{{$data->usulan}}" id="usulan" name="usulan">
+                      <input type="hidden" value="{{$data->waktu}}" id="waktu" name="waktu">
+                      <input type="hidden" value="{{$data->waktusisa}}" id="waktu" name="waktusisa">
+                      <td><a href="{{ route('piutang.show', $data->id) }}">Detail</a>&nbsp;|&nbsp; <input type="submit" class="btn" value="Tambah"></td>
                     </form>
-                      </tr>
-                      
-                      @endforeach
-                      
-                  </tbody>
-                  
-                </table>
-                
-              </div>
-              <!-- /.card-body -->
+                  </tr>
+
+                  @endforeach
+
+                </tbody>
+
+              </table>
+
             </div>
-            <!-- /.card -->
+            <!-- /.card-body -->
           </div>
-          <!-- /.col -->
+          <!-- /.card -->
         </div>
-        <!-- /.row -->
+        <!-- /.col -->
       </div>
-      <!-- /.container-fluid -->
-    </section>
-    <!-- /.content -->
+      <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+  </section>
+  <!-- /.content -->
 </div>
 @endsection
 @section('js')
@@ -174,11 +174,12 @@
 <script src="plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
 <!-- AdminLTE App -->
 <script src="dist/js/adminlte.min.js"></script>
+
 <!-- Page specific script -->
 <script>
-  $(document).ready(function () {
-  $('#example1').DataTable();
-  $('.dataTables_length').addClass('bs-select');
-});
+  $(document).ready(function() {
+    $('#example1').DataTable();
+    $('.dataTables_length').addClass('bs-select');
+  });
 </script>
 @endsection

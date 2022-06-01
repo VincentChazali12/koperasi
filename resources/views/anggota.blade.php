@@ -82,7 +82,12 @@
                         <div class="row">
                           <div class="form-group col-6">
                             <label for="tt">Tempat Tugas</label>
-                            <input type="text" class="form-control tt" id="tt" name="tt" placeholder="Masukkan Tempat Tugas">
+                            <select class="form-control ks" id="tt" name="tt">
+                              <option value="">Pilih Tempat Kerja</option>
+                              @foreach($tempatkerja as $data)
+                              <option value="{{$data->tempatkerja}}">{{$data->tempatkerja}}</option>
+                              @endforeach
+                            </select>
                           </div>
                           <div class="form-group col-6">
                             <label for="telp">No. Telp/HP</label>
@@ -106,7 +111,7 @@
                   </div><!-- /.modal-content -->
                 </div><!-- /.modal-dialog -->
               </div><!-- /.modal -->
-              
+
               <br><br>
               @if (session()->has('success'))
               <div class="alert alert-primary">
@@ -159,7 +164,7 @@
 
 
                   <tr>
-                    <form onsubmit="return confirm('Apakah Anda Yakin ?');" action="{{ route('keluar') }}" role="form" method="POST">
+                    <form onsubmit="return confirm('Apakah Anda Yakin ?');" action="{{ route('anggota2.update',$data->nik) }}" role="form" method="PUT">
                       @csrf
                       <td>
                         {{$data->nik}}
@@ -185,7 +190,7 @@
                       <td>
                         {{$data->status}}
                       </td>
-                      <input type="hidden" value="{{$data->nik}}" id="idanggota" name="ida">
+                      <!-- <input type="hidden" value="{{$data->nik}}" id="idanggota" name="ida"> -->
                       <td><input type="submit" class="btn" value="Keluar"></td>
                     </form>
                   </tr>

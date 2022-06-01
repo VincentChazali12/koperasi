@@ -227,7 +227,7 @@
                         @if($_GET['ss'] != "")
                             <tr>
                                 <td>42111</td>
-                                <td>Simpanan Sukarela</td>
+                                <td>{{$_GET['jenis']}}</td>
                                 <td style="text-align:right;">{{$_GET['ss']}}</td>
                                 @php
                                     $sum+=$_GET['ss'];

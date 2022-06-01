@@ -45,10 +45,7 @@ class simulasiController extends Controller
      */
     public function show(Request $request,$id)
     {
-        $nama=$request->nama;
-        $usulan=$request->usulan;
-        $waktu=$request->waktu;
-        return redirect()->route('simpananwajib.index')->with(['successs' => 'Data Berhasil Diambil!'])->with(['nama'=>$nama])->with(['usulan'=>$usulan])->with(['waktu'=>$waktu]);
+        
     }
 
     /**
@@ -57,6 +54,13 @@ class simulasiController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    public function report(Request $request)
+    {
+        $nama=$request->nama;
+        $usulan=$request->usulan;
+        $waktu=$request->waktu;
+        return redirect()->route('simpananwajib.index')->with(['successs' => 'Data Berhasil Diambil!'])->with(['nama'=>$nama])->with(['usulan'=>$usulan])->with(['waktu'=>$waktu]);
+    }
     public function edit($id)
     {
         //

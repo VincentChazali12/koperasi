@@ -21,12 +21,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Daftar Anggota</h1>
+            <h1>Daftar Simpanan Qurban</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Anggota</li>
+              <li class="breadcrumb-item active">Simpanan Qurban</li>
             </ol>
           </div>
         </div>
@@ -84,7 +84,7 @@
                           </div>
                           <div class="form-group row col-12">
                             <label for="nominal">Nominal</label>
-                            <input type="text" class="form-control nominal" id="nominal" placeholder="Masukkan Keperluan Surat" name="nominal">
+                            <input type="text" class="form-control nominal" id="nominal" placeholder="Nominal" name="nominal">
                           </div>
                           <div class="form-group">
                             <button type="submit" class="btn btn-primary">Tambah</button>
@@ -116,7 +116,7 @@
                         <form action="suratQurban" role="form" method="GET">
                           <div class="form-group row">
                             <label for="tahun">Tahun</label>
-                            <input type="text" class="form-control " id="tahun" placeholder="Masukkan Keperluan Surat" name="tahun" min="1999" step="1" value="2022">
+                            <input type="text" class="form-control " id="tahun" placeholder="Masukkan Tahun" name="tahun" min="1999" step="1" value="2022">
 
                           </div>
                           <div class="form-group">
@@ -141,6 +141,7 @@
                         <input type="hidden" name="sw" value = {{ session()->get('sw')}}>
                         <input type="hidden" name="swk" value = {{ session()->get('swk')}}>
                         <input type="hidden" name="sm" value = {{ session()->get('sm')}}>
+                        <input type="hidden" name="jenis" value ="Simpanan Qurban" >
                         <input type="hidden" name="ss" value = {{ session()->get('ss')}}>
                         <input type="hidden" name="dari" value = {{ session()->get('dari')}}>
                         <input type="hidden" name="dr" value = {{ session()->get('dr')}}>
@@ -197,8 +198,12 @@
                       <input type="hidden" name="nominal" id="nominal" value="{{$data->nominal}}">
                       <input type="hidden" name="bulan" id="bulan" value="{{date('m')}}">
                       <input type="hidden" name="nama" id="nama" value="{{$data->nama}}">
-                      <td><a href="{{ route('qurban.show', $data->idq) }}">Detail</a> | <input type="submit" class="btn" value="Tambah" style="padding:0px;">
+                      <td><a href="{{ route('qurban.show', $data->idq) }}">Detail</a> | <input type="submit" class="btn" value="Tambah" style="padding:0px;"> | 
                     </form>
+                    <form onsubmit="return confirm('Apakah Anda Yakin ?');" action="{{ route('detailQurban.update','$data->idq') }}" role="form" method="PUT">
+                    <input type="submit" class="btn" value="Tarik" style="padding:0px;">
+                    </form>
+                            </td>
                   </tr>
                   
                   @endforeach

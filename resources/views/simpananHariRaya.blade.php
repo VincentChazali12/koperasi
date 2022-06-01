@@ -21,7 +21,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Daftar Anggota</h1>
+            <h1>Daftar Simpanan Hari Raya</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -84,7 +84,7 @@
                           </div>
                           <div class="form-group row col-12">
                             <label for="nominal">Nominal</label>
-                            <input type="text" class="form-control nominal" id="nominal" placeholder="Masukkan Keperluan Surat" name="nominal">
+                            <input type="text" class="form-control nominal" id="nominal" placeholder="Masukkan Nominal" name="nominal">
                           </div>
                           <div class="form-group">
                             <button type="submit" class="btn btn-primary">Tambah</button>
@@ -116,7 +116,7 @@
                         <form action="suratHariRaya" role="form" method="GET">
                           <div class="form-group row">
                             <label for="tahun">Tahun</label>
-                            <input type="text" class="form-control " id="tahun" placeholder="Masukkan Keperluan Surat" name="tahun" min="1999" step="1" value="2022">
+                            <input type="text" class="form-control " id="tahun" placeholder="Tahun" name="tahun" min="1999" step="1" value="2022">
 
                           </div>
                           <div class="form-group">
@@ -141,6 +141,7 @@
                         <input type="hidden" name="sw" value = {{ session()->get('sw')}}>
                         <input type="hidden" name="swk" value = {{ session()->get('swk')}}>
                         <input type="hidden" name="sm" value = {{ session()->get('sm')}}>
+                        <input type="hidden" name="jenis" value ="Simpanan Hari Raya" >
                         <input type="hidden" name="ss" value = {{ session()->get('ss')}}>
                         <input type="hidden" name="dari" value = {{ session()->get('dari')}}>
                         <input type="hidden" name="dr" value = {{ session()->get('dr')}}>

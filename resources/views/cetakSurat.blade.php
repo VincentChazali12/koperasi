@@ -107,7 +107,7 @@
 
                             <!-- Button trigger modal -->
                             <button class="btn btn-primary" data-toggle="modal" data-target="#Modal">
-                                Cetak Surat Permohonan
+                                Cetak Surat Permohonan Tabungan
                             </button>
 
                             <!-- Modal -->
@@ -120,13 +120,51 @@
 
                                         </div>
                                         <div class="modal-body">
-                                            <form action="print" role="form" method="GET">
+                                            <form action="printsuratT" role="form" method="GET">
                                                 <div class="form-group">
                                                     <label for="ks">Keperluan Surat</label>
                                                     <select class="form-control ks" id="ks" name="ks">
                                                         <option value="">Pilih Perihal</option>
-                                                        <option value="Tabungan kurban">Tabungan kurban</option>
+                                                        <option value="Tabungan Qurban">Tabungan Qurban</option>
                                                         <option value="Tabungan hari raya">Tabungan hari raya</option>
+                                                    </select>
+                                                </div>
+                                                <div class="form-group" id="fbaru">
+
+                                                </div>
+                                                <div class="form-group">
+                                                    <button type="submit" class="btn btn-primary">Cetak</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                        </div>
+                                    </div><!-- /.modal-content -->
+                                </div><!-- /.modal-dialog -->
+                            </div><!-- /.modal -->
+
+                            <!-- Button trigger modal -->
+                            <button class="btn btn-primary" data-toggle="modal" data-target="#Modal1">
+                                Cetak Surat Permohonan Peminjaman
+                            </button>
+
+                            <!-- Modal -->
+                            <div class="modal fade" id="Modal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-lg">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h4 class="modal-title" id="myModalLabel">Keperluan Surat</h4>
+                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+
+                                        </div>
+                                        <div class="modal-body">
+                                            <form action="print" role="form" method="GET"target="_blank">
+                                                <div class="form-group">
+                                                    <label for="ks">Keperluan Surat</label>
+                                                    <select class="form-control ks" id="ks" name="ks">
+                                                        <option value="">Pilih Perihal</option>
+                                                        <option value="Pinjaman">Pinjaman</option>
                                                         <!-- <label>Lainnya</label>
                               <input type="text" name="ks" class="form-control" placeholder="Lainnya"> -->
                                                     </select>

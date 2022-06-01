@@ -60,13 +60,17 @@
 
                       </div>
                       <div class="modal-body">
-                        <form action="{{route('simulasis.show','id')}}" role="form" method="POST">
+                        <form action="sreports" role="form" method="GET">
                         @csrf
-                        @method('GET')
                           <div class="row">
                           <div class="form-group col-6">
                               <label for="ida">Nama</label>
                               <input type="text" class="form-control ida" id="nama" placeholder="Masukkan Nama" name="nama" >
+
+                            </div>
+                            <div class="form-group col-6">
+                              <label for="ida">Waktu Mulai</label>
+                              <input type="date" class="form-control ida" id="waktum"  name="waktum" >
 
                             </div>
                           </div>

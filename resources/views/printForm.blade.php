@@ -105,7 +105,7 @@
                         </table>
                     </div> <br>
                     <div class="badan">
-                        <p>Dengan ini mengajukan @php {{echo $_GET['ks'];   }} @endphp kepada Pengurus Koperasi Pegawai Republik Indonesia (KPRI) Kanwil Kementerian Agama Provinsi Riau, sebesar Rp.________________ dengan angsuran selama ___ bulan, uang tersebut akan saya pergunakan untuk ___________________</p>
+                        <p>Dengan ini mengajukan permohonan @php {{echo $_GET['ks'];   }} @endphp kepada Pengurus Koperasi Pegawai Republik Indonesia (KPRI) Kanwil Kementerian Agama Provinsi Riau, sebesar Rp.________________ dengan angsuran selama ___ bulan, uang tersebut akan saya pergunakan untuk ___________________</p>
                         <p>Dan sebagai pertimbangan perlu saya tambahkan hal-hal sebagai berikut:</p>
                         <ol>
                             <li>Bahwa jumlah gaji yang saya terima setiap bulan saat ini adalah sebesar Rp.________________</li>

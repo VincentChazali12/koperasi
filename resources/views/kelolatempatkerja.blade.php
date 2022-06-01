@@ -110,8 +110,8 @@
                           <td>{{$data->tempatkerja}}</td>
                           <td>{{$data->instansi}}</td>
                           <input type="hidden" name="ids" value="{{$data->id}}">
-                          <input type="hidden" name="tk" value="{{$data->tempatkerja}}">
-                          <input type="hidden" name="instansi" value="{{$data->instansi}}">
+                          <input type="hidden" name="tempat" value="{{$data->tempatkerja}}">
+                          <input type="hidden" name="instan" value="{{$data->instansi}}">
                           <td><input type="submit" class="btn" value="Edit"></a>&nbsp;</td>
                     </form>
                       </tr>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Anggota2;
+use App\Models\tempatkerja;
 use App\Models\Pokok;
 use App\Models\Qurban;
 use App\Models\HariRaya;
@@ -19,7 +20,8 @@ class Anggota2Controller extends Controller
     public function index()
     {
         $anggota = Anggota2::all();
-        return view('anggota', compact('anggota'));
+        $tempatkerja = tempatkerja::all();
+        return view('anggota', compact('anggota','tempatkerja'));
     }
 
     /**
@@ -183,9 +185,35 @@ class Anggota2Controller extends Controller
      * @param  \App\Models\Anggota2  $anggota2
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Anggota2 $anggota2)
+    public function update(Request $request, $id)
     {
-        //
+        // $id=$request->ida;
+
+        $anggota = anggota2::findOrFail($id);
+        $anggota->update([
+            'status'=>'Keluar',
+        ]);
+
+        $qurbans = qurban::findOrFail($id);
+        $qurbans->update([
+            'status'=>'Tidak aktif',
+        ]);
+
+        $harirayas = hariraya::findOrFail($id);
+        $harirayas->update([
+            'status'=>'Tidak Aktif',
+        ]);
+        $pokok = DB::select("SELECT SUM(pokoks.spokok) as total FROM anggota2s, pokoks WHERE anggota2s.nik = pokoks.nik AND anggota2s.nik = '$request->ida'");
+        $qurban = DB::select("SELECT SUM(detail_qurbans.simpanan) as total FROM qurbans, detail_qurbans, anggota2s WHERE qurbans.id = detail_qurbans.id_qurban AND qurbans.nik=anggota2s.nik AND anggota2s.nik = '$request->ida'");
+        $hariraya = DB::select("SELECT SUM(detail_hari_rayas.simpanan) as total FROM hari_rayas, detail_hari_rayas, anggota2s WHERE hari_rayas.id = detail_hari_rayas.id_hari_raya AND hari_rayas.nik=anggota2s.nik AND anggota2s.nik = '$request->ida'");
+        $ss = $qurban + $hariraya;
+        $sp= 25000;
+        $sw = $pokok;
+        if ($anggota) {
+            return redirect()->route('anggota2.index')->with(['successs' => 'Data Berhasil Diubah!'])->with(['sp'=>$sp])->with(['sw'=>$sw])->with(['dari'=>$anggota->nama])->with(['ss'=>$ss]);
+        } else {
+            return redirect()->route('anggota2.index')->with(['error' => 'Data Gagal Disimpan!']);
+        }
     }
 
     /**
