@@ -17,13 +17,13 @@ class HariRayaController extends Controller
     public function index()
     {
         $raya = DB::select('SELECT x.nik, x.nama, x.tahun, x.nominal, SUM(x.simpanan) as total, x.idq, x.status
-                            FROM(SELECT anggotas.id as ida, anggotas.nama, anggotas.nik, hari_rayas.tahun, hari_rayas.id as idq, hari_rayas.nominal, hari_rayas.status, detail_hari_rayas.simpanan 
-                                FROM anggotas,hari_rayas,detail_hari_rayas 
-                                WHERE anggotas.nik = hari_rayas.nik 
+                            FROM(SELECT anggota2s.id as ida, anggota2s.nama, anggota2s.nik, hari_rayas.tahun, hari_rayas.id as idq, hari_rayas.nominal, hari_rayas.status, detail_hari_rayas.simpanan 
+                                FROM anggota2s,hari_rayas,detail_hari_rayas 
+                                WHERE anggota2s.nik = hari_rayas.nik 
                                     AND hari_rayas.id = detail_hari_rayas.id_hari_raya) as x 
                             GROUP BY x.idq;');
-        $anggota = DB::select('SELECT id, nama, nik FROM anggotas');
-        $data1 = DB::select('SELECT anggotas.nik, hari_rayas.created_at, detail_hari_rayas.id FROM anggotas, hari_rayas, detail_hari_rayas WHERE anggotas.nik = hari_rayas.nik AND hari_rayas.id=detail_hari_rayas.id_hari_raya AND detail_hari_rayas.bulan = month(CURRENT_TIMESTAMP)');
+        $anggota = DB::select('SELECT id, nama, nik FROM anggota2s');
+        $data1 = DB::select('SELECT anggota2s.nik, hari_rayas.created_at, detail_hari_rayas.id FROM anggota2s, hari_rayas, detail_hari_rayas WHERE anggota2s.nik = hari_rayas.nik AND hari_rayas.id=detail_hari_rayas.id_hari_raya AND detail_hari_rayas.bulan = month(CURRENT_TIMESTAMP)');
 
         return view('simpananHariRaya', compact('raya','anggota','data1'));
     }
@@ -74,7 +74,7 @@ class HariRayaController extends Controller
     public function show($id)
     {
         $detail = DB::select('SELECT detail_hari_rayas.* FROM detail_hari_rayas, hari_rayas WHERE detail_hari_rayas.id_hari_raya = hari_rayas.id AND hari_rayas.id = '.$id.' ORDER BY detail_hari_rayas.bulan');
-        $detail1 = DB::select('SELECT hari_rayas.tahun, hari_rayas.nominal, hari_rayas.status, anggotas.nik, anggotas.nama, hari_rayas.id FROM hari_rayas, anggotas WHERE hari_rayas.nik = anggotas.nik AND hari_rayas.id = '.$id);
+        $detail1 = DB::select('SELECT hari_rayas.tahun, hari_rayas.nominal, hari_rayas.status, anggota2s.nik, anggota2s.nama, hari_rayas.id FROM hari_rayas, anggota2s WHERE hari_rayas.nik = anggota2s.nik AND hari_rayas.id = '.$id);
 
         return view('detailHariRaya', compact('detail','detail1'));
     }
@@ -89,9 +89,9 @@ class HariRayaController extends Controller
                                 AND hari_rayas.tahun = '$request->tahun' ");;
 
         $data1 = DB::select("SELECT x.nik, x.nama, x.tahun, x.nominal, SUM(x.simpanan) as total, x.idq, x.status
-                            FROM(SELECT anggotas.id as ida, anggotas.nama, anggotas.nik, hari_rayas.tahun, hari_rayas.id as idq, hari_rayas.nominal, hari_rayas.status, detail_hari_rayas.simpanan 
-                                FROM anggotas,hari_rayas,detail_hari_rayas 
-                                WHERE anggotas.nik = hari_rayas.nik 
+                            FROM(SELECT anggota2s.id as ida, anggota2s.nama, anggota2s.nik, hari_rayas.tahun, hari_rayas.id as idq, hari_rayas.nominal, hari_rayas.status, detail_hari_rayas.simpanan 
+                                FROM anggota2s,hari_rayas,detail_hari_rayas 
+                                WHERE anggota2s.nik = hari_rayas.nik 
                                     AND hari_rayas.id = detail_hari_rayas.id_hari_raya AND hari_rayas.tahun='$request->tahun') as x 
                             GROUP BY x.idq;");
         

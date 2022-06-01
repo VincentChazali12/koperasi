@@ -20,9 +20,9 @@ class PiutangController extends Controller
         // = anggotas.nik');
         // $anggota = DB::select('SELECT id, nama, nik FROM anggotas');
         // return view('piutang', compact('piutangs','anggota'));
-        $piutangs=DB::select('SELECT piutang_masters.* , anggotas.nama FROM piutang_masters, anggotas WHERE piutang_masters.id_anggota
-        = anggotas.nik');
-        $anggota = DB::select('SELECT id, nama, nik FROM anggotas');
+        $piutangs=DB::select('SELECT piutang_masters.* , anggota2s.nama FROM piutang_masters, anggota2s WHERE piutang_masters.id_anggota
+        = anggota2s.nik');
+        $anggota = DB::select('SELECT id, nama, nik FROM anggota2s');
         return view('piutang', compact('piutangs','anggota'));
     }
 
@@ -87,7 +87,7 @@ class PiutangController extends Controller
             'angsuran_total'=>0,
             'sisa'=> $pinjaman,
             'waktu'=>$request->waktu,
-            'ket'=>"Belum Bayar",
+            'ket'=>"Validasi Peminjaman",
             'id_piutang'=> $piutangmaster->id,
         ]);
         
@@ -107,7 +107,7 @@ class PiutangController extends Controller
     public function show($id)
     {
         $detail = DB::select('SELECT * FROM piutangs WHERE piutangs.id_piutang = '.$id);
-        $detail1 = DB::select('SELECT * FROM anggotas WHERE anggotas.nik= '.$id);
+        $detail1 = DB::select('SELECT * FROM anggota2s WHERE anggota2s.nik= '.$id);
 
         return view('detailPiutang', compact('detail','detail1'));
     }

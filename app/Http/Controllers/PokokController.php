@@ -16,11 +16,11 @@ class PokokController extends Controller
     public function index()
     {
         $data = DB::select('SELECT x.nik, x.nama, SUM(x.spokok) as total, x.nik 
-                            FROM (SELECT anggotas.nik, anggotas.nama, pokoks.spokok, anggotas.id 
-                                    FROM anggotas, pokoks WHERE anggotas.nik = pokoks.nik) AS x 
+                            FROM (SELECT anggota2s.nik, anggota2s.nama, pokoks.spokok, anggota2s.id 
+                                    FROM anggota2s, pokoks WHERE anggota2s.nik = pokoks.nik) AS x 
                             GROUP BY x.nik;');
 
-        $data1 = DB::select('SELECT anggotas.nik, pokoks.created_at FROM anggotas, pokoks WHERE anggotas.nik = pokoks.nik AND month(pokoks.created_at) = month(CURRENT_TIMESTAMP)');
+        $data1 = DB::select('SELECT anggota2s.nik, pokoks.created_at FROM anggota2s, pokoks WHERE anggota2s.nik = pokoks.nik AND month(pokoks.created_at) = month(CURRENT_TIMESTAMP)');
 
         return view('simpananPokok', compact('data','data1'));
     }
@@ -60,15 +60,15 @@ class PokokController extends Controller
         $from =  $request->from . "-06";
         $to = $request->from + 1;
         $to = $to."-05";
-        $data = DB::select("SELECT anggotas.nama, pokoks.spokok, date_format(pokoks.created_at, '%Y-%m') AS waktu, anggotas.nik
-                            FROM anggotas, pokoks 
-                            WHERE anggotas.nik = pokoks.nik AND date_format(pokoks.created_at, '%Y-%m') BETWEEN '$from' AND '$to'
+        $data = DB::select("SELECT anggota2s.nama, pokoks.spokok, date_format(pokoks.created_at, '%Y-%m') AS waktu, anggota2s.nik
+                            FROM anggota2s, pokoks 
+                            WHERE anggota2s.nik = pokoks.nik AND date_format(pokoks.created_at, '%Y-%m') BETWEEN '$from' AND '$to'
                             ORDER BY pokoks.created_at;");
 
         $data1 = DB::select("SELECT x.nik, x.nama, SUM(x.spokok) as total, x.id 
-                            FROM (SELECT anggotas.nik, anggotas.nama, pokoks.spokok, anggotas.id 
-                                    FROM anggotas, pokoks 
-                                    WHERE anggotas.nik = pokoks.nik 
+                            FROM (SELECT anggota2s.nik, anggota2s.nama, pokoks.spokok, anggota2s.id 
+                                    FROM anggota2s, pokoks 
+                                    WHERE anggota2s.nik = pokoks.nik 
                                         AND date_format(pokoks.created_at, '%Y-%m') BETWEEN '$from' AND '$to') AS x 
                             GROUP BY x.id;");
         
@@ -84,7 +84,7 @@ class PokokController extends Controller
      */
     public function show($id)
     {
-        $detail = DB::select('SELECT * FROM anggotas WHERE anggotas.nik = '.$id);
+        $detail = DB::select('SELECT * FROM anggota2s WHERE anggota2s.nik = '.$id);
         $detail1 = DB::select('SELECT * FROM pokoks WHERE pokoks.nik= '.$id);
 
         return view('detailPokok', compact('detail','detail1'));

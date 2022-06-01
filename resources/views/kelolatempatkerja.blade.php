@@ -22,12 +22,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Daftar Piutang</h1>
+            <h1>Daftar Tempat Kerja</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Piutang</li>
+              <li class="breadcrumb-item active">Kelola Tempat Tugas</li>
             </ol>
           </div>
         </div>
@@ -43,7 +43,7 @@
              <div class="card-body">
                 <!-- Button trigger modal -->
                 <button class="btn btn-primary" data-toggle="modal" data-target="#myModal">
-                  Tambah Pinjaman
+                  Tambah Tempat Kerja
                 </button>
 
                 <!-- Modal -->
@@ -56,28 +56,18 @@
 
                       </div>
                       <div class="modal-body">
-                        <form action="{{route('piutang.store')}}" role="form" method="POST">
+                        <form action="{{route('tempatkerjas.store')}}" role="form" method="POST">
                         @csrf
                           <div class="row">
-                          <div class="form-group col-6">
-                              <label for="ida">id | Nama</label>
-                              <input type="text" class="form-control ida" id="ida" placeholder="Masukkan ida atau Nama" name="ida" list="daftarNama">
-                              <datalist id="daftarNama">
-                                @foreach($anggota as $data)
-                                  <option value="{{$data->nik}} | {{$data->nama}}"></option>
-                                @endforeach
-                              </datalist>
-
-                            </div>
                           </div>
                           <div class="row">
                             <div class="form-group col-6">
-                              <label for="usulan">Usulan Pinjaman</label>
-                              <input type="text" class="form-control usulan" name="usulan" id="usulan" placeholder="Masukkan Usulan Pinjaman">
+                              <label for="tempatkerja">Nama Tempat Kerja</label>
+                              <input type="text" class="form-control tempatkerja" name="tempatkerja" id="tempatkerja" placeholder="Masukkan Nama Tempat Kerja">
                             </div>
                             <div class="form-group col-6">
-                              <label for="waktu">Jangka Waktu</label>
-                              <input type="text" class="form-control waktu" name="waktu" id="waktu" placeholder="Masukkan Jangka Waktu Pinjaman">
+                              <label for="instansi">Instansi</label>
+                              <input type="text" class="form-control instansi" name="instansi" id="instansi" placeholder="Masukkan Instansi">
                             </div>
                           </div>
                           <div class="row">
@@ -102,11 +92,8 @@
                   <thead>
                   <tr>
                     <th>No</th>
-                    <th>Nama</th>
-                    <th>TGl Usulan</th>
-                    <th>Total Pinjaman</th>
-                    <th>Sisa Hutang</th>
-                    <th>Waktu </th>
+                    <th>Tempat Kerja</th>
+                    <th>Instansi</th>
                     <th>Aksi</th>
                   </tr>
                   </thead>
@@ -114,23 +101,18 @@
                     @php
                     $no = 0
                     @endphp
-                      @foreach($piutangs as $data)
+                      @foreach($tk as $data)
                       <tr>
-                  <form onsubmit="return confirm('Apakah Anda Yakin ?');" action="{{ route('piutang.update',$data->id) }}" role="form" method="POST">
+                      <form  action="updatetk" role="form" method="GET">
                   @csrf
-                  @method('PUT')
+
                           <td>{{$no++}}</td>
-                          <td>{{$data->nama}}</td>
-                          <td>{{$data->created_at}}</td>
-                          <td>{{$data->usulan}}</td>
-                          <td>{{$data->sisa}}</td>
-                          <td>{{$data->waktusisa}}</td>
-                          <input type="hidden" value="{{$data->id}}" id="ida" name="ida">
-                          <input type="hidden" value="{{$data->sisa}}" id="sisa" name="sisa">
-                          <input type="hidden" value="{{$data->usulan}}" id="usulan" name="usulan">
-                          <input type="hidden" value="{{$data->waktu}}" id="waktu" name="waktu">
-                          <input type="hidden" value="{{$data->waktusisa}}" id="waktu" name="waktusisa">
-                    <td><a href="{{ route('piutang.show', $data->id) }}">Detail</a>&nbsp;|&nbsp; <input type="submit" class="btn" value="Tambah"></td>
+                          <td>{{$data->tempatkerja}}</td>
+                          <td>{{$data->instansi}}</td>
+                          <input type="hidden" name="ids" value="{{$data->id}}">
+                          <input type="hidden" name="tk" value="{{$data->tempatkerja}}">
+                          <input type="hidden" name="instansi" value="{{$data->instansi}}">
+                          <td><input type="submit" class="btn" value="Edit"></a>&nbsp;</td>
                     </form>
                       </tr>
                       

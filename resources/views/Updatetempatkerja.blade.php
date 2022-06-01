@@ -14,7 +14,7 @@
 @section('content')
 
   <!-- Main Sidebar Container -->
-  @csrf
+  
   <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -22,16 +22,18 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Dashboard</h1>
+            <h1>Daftar Tempat Kerja</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
+              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item active">Kelola Tempat Kerja</li>
             </ol>
           </div>
         </div>
       </div><!-- /.container-fluid -->
     </section>
+
     <!-- Main content -->
     <section class="content">
       <div class="container-fluid">
@@ -39,58 +41,35 @@
           <div class="col-12">
             <div class="card">
              <div class="card-body">
-                <!-- Button trigger modal -->
-                
-              
-                
+             @csrf
+                    @php
+                    @endphp
+                      <div class="modal-body">
+                        <form action="{{route('tempatkerjas.update','1')}}" role="form" method="PUT">
+                        
+                          <div class="row">
+                            <div class="form-group col-6">
+                              <label for="usulan">Nama Tempat Kerja</label>
+                              <input type="text" class="form-control usulan" name="tempatkerja" id="usulan"  value="{{$_GET['tk']}}">
+                            </div>
+                            <div class="form-group col-6">
+                              <label for="waktu">Nama Instansi</label>
+                              <input type="text" class="form-control waktu" name="instansis" id="waktu" value="{{$_GET['instansi']}}">
+                              <input type="hidden" class="form-control waktu" name="id"  value="{{$_GET['ids']}}">
+                            </div>
+                          </div>
+                          <div class="row">
+                          </div>
+</br></br></br>
+                          <button type="submit" class="btn btn-primary col-2" >Update</button>
+                        </form>
+                      </div>
+                      <div class="modal-footer"> 
+                        <button type="reset"  class="btn btn-default" data-dismiss="modal">Batal</button>
+                      </div>
 
-                
-</br></br>
-
-                  
-                    
-
-                <table id="example1" class="table table-bordered table-striped">
-                  <tbody>
-                  <tr>
-                    <th>Total Anggota</th>
-                        <th>Total Piutang</th>
-                        <th>Total Simpanan Pokok</th>
-                        <th>Total Simpanan Qurban</th>
-                        <th>Total Simpanan Hari Raya</th>
-                        <th>Total Simpanan Modal</th>
-                  </tr>
-                  <tr>
-                  <td>
-                        @foreach($totalanggota as $data)
-                        {{$data->totala}}@endforeach
-                        </td>
-                        <td>
-                        @foreach($totalpiutang as $data)
-                        {{$data->totalp}}@endforeach
-                        </td>
-                        <td>
-                        @foreach($totalsp as $data)
-                        {{$data->totalsp}}@endforeach
-                        </td>
-                        <td>
-                        @foreach($totalsq as $data)
-                        {{$data->totalsq}}@endforeach
-                        </td>
-                        <td>
-                        @foreach($totalsh as $data)
-                        {{$data->totalsh}}@endforeach
-                        </td>
-                        <td>
-                        @foreach($totalsm as $data)
-                        {{$data->totalsm}}@endforeach
-                        </td>
-                  </tr>
-                  </tbody>
-                  
-                </table>
-</br></br>
-                
+                <br><br>
+               
                 
               </div>
               <!-- /.card-body -->
@@ -128,19 +107,9 @@
 <script src="dist/js/adminlte.min.js"></script>
 <!-- Page specific script -->
 <script>
-  function excel(){
-    $(document).ready(function () {
-    $("#example1").table2excel({
-        filename: "Data.xls"
-    });
- });
-  }
-</script>
-
-<script src=
-"//ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js">
-</script>
-<script src=
-"//cdn.rawgit.com/rainabba/jquery-table2excel/1.1.0/dist/jquery.table2excel.min.js">
+  $(document).ready(function () {
+  $('#example1').DataTable();
+  $('.dataTables_length').addClass('bs-select');
+});
 </script>
 @endsection

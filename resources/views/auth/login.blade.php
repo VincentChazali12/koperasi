@@ -81,7 +81,7 @@
                         </div>
                         <div class="row mb-0">
                             <div class="col-md-8 offset-md-4">
-                                <a href="registers">Belum punya akun? register</a>
+                                <a href="../registers">Belum punya akun? register</a>
                             </div>
                         </div>
                     </form>

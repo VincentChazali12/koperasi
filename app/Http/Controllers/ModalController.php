@@ -17,7 +17,7 @@ class ModalController extends Controller
     public function index()
     {
         $modal = Modal::all();
-        $anggota = DB::select('SELECT id, nama, nik FROM anggotas');
+        $anggota = DB::select('SELECT id, nama, nik FROM anggota2s');
 
         return view('simpananModal',compact('modal','anggota'));
     }
@@ -78,9 +78,9 @@ class ModalController extends Controller
                                 AND qurbans.tahun = '$request->tahun' ");;
 
         $data1 = DB::select("SELECT x.nik, x.nama, x.tahun, x.nominal, SUM(x.simpanan) as total, x.idq, x.status
-                            FROM(SELECT anggotas.id as ida, anggotas.nama, anggotas.nik, qurbans.tahun, qurbans.id as idq, qurbans.nominal, qurbans.status, detail_qurbans.simpanan 
-                                FROM anggotas,qurbans,detail_qurbans 
-                                WHERE anggotas.nik = qurbans.nik 
+                            FROM(SELECT anggota2s.id as ida, anggota2s.nama, anggota2s.nik, qurbans.tahun, qurbans.id as idq, qurbans.nominal, qurbans.status, detail_qurbans.simpanan 
+                                FROM anggota2s,qurbans,detail_qurbans 
+                                WHERE anggota2s.nik = qurbans.nik 
                                     AND qurbans.id = detail_qurbans.id_qurban AND qurbans.tahun='$request->tahun') as x 
                             GROUP BY x.idq;");
         

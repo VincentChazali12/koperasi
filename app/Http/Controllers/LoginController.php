@@ -62,7 +62,7 @@ class LoginController extends Controller
             'password'=>'required|min:8|max:255'
         
         ]);
-        $validateddata['password'] = Hash::make($validateddata['password']);
+        // $validateddata['password'] = Hash::make($validateddata['password']);
             User::create($validateddata);
             $request->session()->flash('sucess','Registration successfull! Please login');
             return redirect()->route('login.index');
@@ -96,7 +96,7 @@ class LoginController extends Controller
         $emails = DB::select("SELECT email from users where email='$email'");
         $passwords=DB::select("SELECT users.password from users where users.password='$password'");
         if($emails and $passwords ){
-            return redirect()->route('anggota2.index')->with(['successss' => 'Berhasil Login!']);
+            return redirect()->route('dashboards.index')->with(['successss' => 'Berhasil Login!']);
         }else{
             return view('Auth/login')->with(['successss' => 'Email atau Password Salah!']);
         }

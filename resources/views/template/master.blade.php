@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>AdminLTE 3 | Dashboard</title>
+  <title>Koperasi</title>
 
   @yield('css')
   <!-- Google Font: Source Sans Pro -->
@@ -57,7 +57,7 @@
     <!-- Brand Logo -->
     <a href="index3.html" class="brand-link">
       <img src="{{ asset('dist/img/AdminLTELogo.png') }}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-      <span class="brand-text font-weight-light">AdminLTE 3</span>
+      <span class="brand-text font-weight-light">Koperasi</span>
     </a>
 
     <!-- Sidebar -->
@@ -146,6 +146,30 @@
               <i class="nav-icon far fa-copy"></i>
               <p>
                 Simulasi
+              </p>
+            </a>
+          </li> 
+          <li class="nav-item">
+            <a href="../tempatkerjas" class="nav-link">
+              <i class="nav-icon far fa-copy"></i>
+              <p>
+                Kelola Tempat Tugas
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="../cetaksurat" class="nav-link">
+              <i class="nav-icon far fa-copy"></i>
+              <p>
+                Cetak Surat
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="../cetaklaporan" class="nav-link">
+              <i class="nav-icon far fa-copy"></i>
+              <p>
+                Cetak Laporan
               </p>
             </a>
           </li> 

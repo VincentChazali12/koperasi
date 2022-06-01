@@ -65,8 +65,7 @@
                     <th>Angsuran Total</th>
                     <th>Sisa Hutang</th>
                     <th>Waktu</th>
-                    <th>status</th>
-                    <th>Aksi</th>
+
                   </tr>
                   </thead>
                   <tbody>
@@ -116,13 +115,12 @@
                       <tr>
                           <td>{{$no}}</td>
                           <td>{{ session()->get('nama')}}</td>
-                          <td>May-1022</td>
+                          <td>May-2022</td>
                           <td>{{$angsuran_pokok}}</td>
                           <td>{{$angsuran_jasa}}</td>
                           <td>{{$angsuran_total}}</td>
                           <td>{{$sisa}}</td>
                           <td>{{$waktubaru}}</td>
-                          <td>Sudah Bayar</td>
 
                       </tr>
                       

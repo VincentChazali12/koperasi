@@ -17,13 +17,13 @@ class QurbanController extends Controller
     public function index()
     {
         $qurban = DB::select('SELECT x.nik, x.nama, x.tahun, x.nominal, SUM(x.simpanan) as total, x.idq, x.status
-                            FROM(SELECT anggotas.id as ida, anggotas.nama, anggotas.nik, qurbans.tahun, qurbans.id as idq, qurbans.nominal, qurbans.status, detail_qurbans.simpanan 
-                                FROM anggotas,qurbans,detail_qurbans 
-                                WHERE anggotas.nik = qurbans.nik 
+                            FROM(SELECT anggota2s.id as ida, anggota2s.nama, anggota2s.nik, qurbans.tahun, qurbans.id as idq, qurbans.nominal, qurbans.status, detail_qurbans.simpanan 
+                                FROM anggota2s,qurbans,detail_qurbans 
+                                WHERE anggota2s.nik = qurbans.nik 
                                     AND qurbans.id = detail_qurbans.id_qurban) as x 
                             GROUP BY x.idq;');
-        $anggota = DB::select('SELECT id, nama, nik FROM anggotas');
-        $data1 = DB::select('SELECT anggotas.nik, qurbans.created_at, detail_qurbans.id FROM anggotas, qurbans, detail_qurbans WHERE anggotas.nik = qurbans.nik AND qurbans.id=detail_qurbans.id_qurban AND detail_qurbans.bulan = month(CURRENT_TIMESTAMP)');
+        $anggota = DB::select('SELECT id, nama, nik FROM anggota2s');
+        $data1 = DB::select('SELECT anggota2s.nik, qurbans.created_at, detail_qurbans.id FROM anggota2s, qurbans, detail_qurbans WHERE anggota2s.nik = qurbans.nik AND qurbans.id=detail_qurbans.id_qurban AND detail_qurbans.bulan = month(CURRENT_TIMESTAMP)');
 
         return view('simpananQurban', compact('qurban','anggota','data1'));
     }
@@ -74,7 +74,7 @@ class QurbanController extends Controller
     public function show($id)
     {
         $detail = DB::select('SELECT detail_qurbans.* FROM detail_qurbans, qurbans WHERE detail_qurbans.id_qurban = qurbans.id AND qurbans.id = '.$id.' ORDER BY detail_qurbans.bulan');
-        $detail1 = DB::select('SELECT qurbans.tahun, qurbans.nominal, qurbans.status, anggotas.nik, anggotas.nama, qurbans.id FROM qurbans, anggotas WHERE qurbans.nik = anggotas.nik AND qurbans.id = '.$id);
+        $detail1 = DB::select('SELECT qurbans.tahun, qurbans.nominal, qurbans.status, anggota2s.nik, anggota2s.nama, qurbans.id FROM qurbans, anggota2s WHERE qurbans.nik = anggota2s.nik AND qurbans.id = '.$id);
 
         return view('detailQurban', compact('detail','detail1'));
     }
@@ -89,9 +89,9 @@ class QurbanController extends Controller
                                 AND qurbans.tahun = '$request->tahun' ");;
 
         $data1 = DB::select("SELECT x.nik, x.nama, x.tahun, x.nominal, SUM(x.simpanan) as total, x.idq, x.status
-                            FROM(SELECT anggotas.id as ida, anggotas.nama, anggotas.nik, qurbans.tahun, qurbans.id as idq, qurbans.nominal, qurbans.status, detail_qurbans.simpanan 
-                                FROM anggotas,qurbans,detail_qurbans 
-                                WHERE anggotas.nik = qurbans.nik 
+                            FROM(SELECT anggota2s.id as ida, anggota2s.nama, anggota2s.nik, qurbans.tahun, qurbans.id as idq, qurbans.nominal, qurbans.status, detail_qurbans.simpanan 
+                                FROM anggota2s,qurbans,detail_qurbans 
+                                WHERE anggota2s.nik = qurbans.nik 
                                     AND qurbans.id = detail_qurbans.id_qurban AND qurbans.tahun='$request->tahun') as x 
                             GROUP BY x.idq;");
         

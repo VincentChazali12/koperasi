@@ -29,7 +29,8 @@ Route::resource('simpananwajib',SimpananWajibController::class);
 Route::resource('simulasis',simulasiController::class);
 Route::resource('dashboards',DashboardController::class);
 Route::resource('sdashboard',DashboardssController::class);
-
+Route::resource('tempatkerjas',TempatkerjaController::class);
+Route::resource('tempatkerjas2',Tempatkerja2Controller::class);
 Route::get('pokok.report', 'PokokController@report');
 Route::post('simpanQurban', 'DetailQurbanController@store1')->name('simpanQurban');
 Route::post('keluar', 'Anggota2Controller@keluar')->name('keluar');
@@ -52,8 +53,17 @@ Route::get('registers', function () {
 Route::get('logins', function () {
     return view('Auth/login');
 });
+Route::get('cetaklaporan', function () {
+    return view('cetaklaporan');
+});
+Route::get('updatetk', function () {
+    return view('Updatetempatkerja');
+});
 Route::get('prints', function () {
     return view('suratBSI');
+});
+Route::get('cetaksurat', function () {
+    return view('cetakSurat');
 });
 // Route::get('simulasi', function () {
 //     return view('SImulasi');

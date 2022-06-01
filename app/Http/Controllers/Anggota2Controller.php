@@ -66,10 +66,41 @@ class Anggota2Controller extends Controller
      */
     public function store(Request $request)
     {
+        $date = $request->tanggallahir;
+        $pecah = explode('-', $date);
+        if($pecah[1]=='01'){
+            $pecah[1]='Januari';
+        }else if($pecah[1]=='02'){
+            $pecah[1]='Febuari';
+        }else if($pecah[1]=='03'){
+            $pecah[1]='Maret';
+        }else if($pecah[1]=='04'){
+            $pecah[1]='April';
+        }else if($pecah[1]=='05'){
+            $pecah[1]='Mei';
+        }else if($pecah[1]=='06'){
+            $pecah[1]='Juni';
+        }else if($pecah[1]=='07'){
+            $pecah[1]='Juli';
+        }else if($pecah[1]=='08'){
+            $pecah[1]='Agustus';
+        }else if($pecah[1]=='09'){
+            $pecah[1]='September';
+        }else if($pecah[1]=='10'){
+            $pecah[1]='Oktober';
+        }else if($pecah[1]=='11'){
+            $pecah[1]='November';
+        }else if($pecah[1]=='12'){
+            $pecah[1]='Desember';
+        }
+        $tanggallahir=$pecah[2].' '.$pecah[1].' '.$pecah[0];
+
+        $tempat=$request->tempat;
+        $ttl=$tempat.", ".$tanggallahir;
         $anggota = anggota2::create([
             'nik'=> $request->nik,
             'nama'=> $request->nama,
-            'ttl' => $request->ttl,
+            'ttl' => $ttl,
             'alamat' => $request->alamat,
             'tempat_tugas'=> $request->tt,
             'telp'=> $request->telp,
@@ -78,7 +109,7 @@ class Anggota2Controller extends Controller
             
         ]);
         $pokok = pokok::create([
-            'spokok'=> 25000,
+            'spokok'=> 50000,
             'nik'=> $anggota->nik,
             'created_at'=>null,
         ]);
