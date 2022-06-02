@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\DetailQurban;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use App\Models\Qurban;
 
 class detailQurbanController extends Controller
 {
@@ -39,6 +41,15 @@ class detailQurbanController extends Controller
             'id_qurban'=> $request->idq,
             'simpanan'=> $request->nominal,
             'bulan'=> $request->bulan,
+        ]);
+        $simpqurban = DB::select("SELECT sum(simpanan) as total FROM detail_qurbans where id_qurban= '$request->idq'");
+        $upqurban = Qurban::findOrFail($request->idq);
+        foreach ($simpqurban as $value){
+            $simpqurban= $value->total;
+             
+        }
+        $upqurban->update([
+            'totalsimpanan'=> $simpqurban,
         ]);
         if($qurban){
             return redirect()->route('qurban.index')->with(['success' => 'Data Berhasil Disimpan!'])->with(['ss' => $request->nominal])->with(['dari' => $request->nama]);

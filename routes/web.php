@@ -35,6 +35,7 @@ Route::get('pokok.report', 'PokokController@report');
 
 Route::post('simpanQurban', 'DetailQurbanController@store1')->name('simpanQurban');
 Route::post('keluar', 'Anggota2Controller@keluar')->name('keluar');
+Route::Get('updatee', 'Anggota2Controller@updatee')->name('updatee');
 Route::post('simpanHariRaya', 'DetailHariRayaController@store1')->name('simpanHariRaya');
 Route::get('suratQurban', 'QurbanController@surat');
 Route::get('suratHariRaya', 'HariRayaController@surat');
@@ -51,6 +52,9 @@ Route::get('printsuratT', function () {
 });
 Route::get('sreports', function () {
     return view('hasilsimulasi');
+});
+Route::get('sanggotabaru', function () {
+    return view('suratanggotabaru');
 });
 Route::resource('login',LoginController::class);
 Route::post('authenticate','LoginController@authenticate')->name('authenticate');

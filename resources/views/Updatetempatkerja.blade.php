@@ -42,20 +42,20 @@
             <div class="card">
              <div class="card-body">
              
-                    @php
-                    @endphp
+
                       <div class="modal-body">
-                        <form action="{{route('tempatkerjas.update','1')}}" role="form" method="PUT">
+                        <form action="{{route('tempatkerjas.update',$_GET['ids'])}}" role="form" method="PUT">
                         @csrf
                           <div class="row">
                             <div class="form-group col-6">
                               <label for="tempatkerja">Nama Tempat Kerja</label>
-                              <input type="text" class="form-control tempatkerja" name="tempatkerja" placeholder="{{$_GET['tempat']}}">
+                              <input type="text" class="form-control tempatkerja" name="tempatkerja"  value="{{$_GET['tempat']}}">
+
                             </div>
                             <div class="form-group col-6">
                               <label for="instansi">Nama Instansi</label>
-                              <input type="text" class="form-control instansi" name="instansis"  placeholder="{{$_GET['instan']}}">
-                              <input type="hidden" class="form-control " name="id"  value="{{$_GET['ids']}}">
+                              <input type="text" class="form-control instansi" name="tempatkerja"  value="{{$_GET['instan']}}">
+                              
                             </div>
                           </div>
                           <div class="row">

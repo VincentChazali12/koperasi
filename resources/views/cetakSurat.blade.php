@@ -183,6 +183,14 @@
                                     </div><!-- /.modal-content -->
                                 </div><!-- /.modal-dialog -->
                             </div><!-- /.modal -->
+                            
+                            <!-- Button trigger modal -->
+                            <form action="sanggotabaru" role="form" method="GET"target="_blank">
+</br>
+                            <button class="btn btn-primary" >
+                                Cetak Surat Permohonan Anggota Baru
+                            </button>
+                            </form>
                         </div>
                         <!-- /.card-body -->
 

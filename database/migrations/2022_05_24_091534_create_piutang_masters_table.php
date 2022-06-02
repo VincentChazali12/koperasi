@@ -17,6 +17,8 @@ class CreatePiutangMastersTable extends Migration
             $table->id();
             $table->timestamps();
             $table->integer('usulan');
+            $table->integer('asuransi');
+            $table->integer('iurankhusus');
             $table->integer('sisa');
             $table->integer('waktu');
             $table->integer('waktusisa');

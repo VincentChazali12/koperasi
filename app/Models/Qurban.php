@@ -8,6 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class Qurban extends Model
 {
     use HasFactory;
-    protected $fillable=['nik', 'tahun','nominal','status'];
+    protected $fillable=['nik', 'tahun','nominal','totalsimpanan','status'];
 
 }

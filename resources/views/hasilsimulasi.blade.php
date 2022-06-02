@@ -48,6 +48,9 @@
               <button class="btn btn-primary" onclick="excel()">
                 Unduh Rincian Piutang
               </button>
+              <button class="btn btn-primary" onclick="  window.print()">
+                Unduh Rincian Piutang
+              </button>
 
               <div class="row">
 
@@ -176,9 +179,7 @@
                 </tbody>
 
               </table>
-              <!-- <script>
- window.print();
- </script> -->
+              
 
             </div>
             <!-- /.card-body -->
@@ -226,6 +227,12 @@
     });
   }
 </script>
+<script>
+  function print() {
+  
+  }
+ 
+ </script>
 
 
 

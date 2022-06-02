@@ -14,9 +14,8 @@ class Tempatkerja2Controller extends Controller
      */
     public function index(Request $request)
     {
-        $id=$request->id;
-        $show=DB::select("SELECT * from tempatkerjas where id='$id'");
-        return view('Updatetempatkerja');
+        $show=DB::select("SELECT * from tempatkerjas where id='$request->ids'");
+        return view('Updatetempatkerja',compact('show'));
     }
 
     /**

@@ -55,10 +55,9 @@ class TempatkerjaController extends Controller
      * @param  \App\Models\tempatkerja  $tempatkerja
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show()
     {
-        $show=DB::select("SELECT * from tempatkerjas where id='$id'");
-        return view('Updatetempatkerja',compact('show'));
+        
     }
 
     /**
@@ -81,8 +80,8 @@ class TempatkerjaController extends Controller
      */
     public function update(Request $request,$id)
     {
-        $ids=$request->id;
-        $tempatkerja=tempatkerja::findOrFail($ids);
+        // $ids=$request->id;
+        $tempatkerja=tempatkerja::findOrFail($id);
         $tempatkerja->update([
             'tempatkerja'=>$request->tempatkerja,
             'instansi'=>$request->instansi,

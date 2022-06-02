@@ -74,6 +74,8 @@ class PiutangController extends Controller
         $nik = explode(' ', $request->ida)[0];
         $piutangmaster = piutangmaster::create([
             'usulan'=> $pinjaman,
+            'asuransi'=>0,
+            'iurankhusus'=>0,
             'sisa'=> $pinjaman,
             'waktu'=>$request->waktu,
             'waktusisa'=>$request->waktu,

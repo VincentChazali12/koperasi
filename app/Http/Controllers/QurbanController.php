@@ -47,16 +47,30 @@ class QurbanController extends Controller
     public function store(Request $request)
     {
         $nik = explode(' ', $request->ida)[0];
+        
         $qurban = qurban::create([
             'nik'=> $nik,
             'tahun' => $request->thn,
             'nominal' => $request->nominal,
+            'totalsimpanan'=>0,
             'status' => "Aktif",
+
         ]);
         $detail = detailqurban::create([
             'bulan' => date('m'),
             'id_qurban'=> $qurban->id,
             'simpanan' => $request->nominal,
+        ]);
+        $simpqurban = DB::select("SELECT sum(simpanan) as total FROM detail_qurbans where id_qurban= '$detail->id_qurban'");
+        $upqurban = qurban::findOrFail($qurban->id);
+        foreach ($simpqurban as $value){
+            $simpqurban= $value->total;
+             
+        }
+            
+            
+        $upqurban->update([
+            'totalsimpanan'=> $simpqurban,
         ]);
         if($qurban){
             return redirect()->route('qurban.index')->with(['success' => 'Data Berhasil Disimpan!'])->with(['ss' => $request->nominal])->with(['dari' => explode(' ', $request->ida)[2]]);

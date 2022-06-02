@@ -164,7 +164,7 @@
 
 
                   <tr>
-                    <form onsubmit="return confirm('Apakah Anda Yakin ?');" action="{{ route('anggota2.update',$data->nik) }}" role="form" method="PUT">
+                    <form onsubmit="return confirm('Apakah Anda Yakin ?');" action="{{ route('updatee') }}" role="form" method="GET">
                       @csrf
                       <td>
                         {{$data->nik}}
@@ -190,7 +190,7 @@
                       <td>
                         {{$data->status}}
                       </td>
-                      <!-- <input type="hidden" value="{{$data->nik}}" id="idanggota" name="ida"> -->
+                      <input type="hidden" value="{{$data->nik}}" id="idanggota" name="ida">
                       <td><input type="submit" class="btn" value="Keluar"></td>
                     </form>
                   </tr>

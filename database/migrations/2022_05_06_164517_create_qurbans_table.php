@@ -19,6 +19,7 @@ class CreateQurbansTable extends Migration
             $table->string('nik',50);
             $table->string('tahun',50);
             $table->integer('nominal');
+            $table->integer('totalsimpanan');
             $table->string('status', 10);
         });
     }
